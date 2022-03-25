@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="DesignSurface">
+    <option name="filePathToZoomLevelMap">
+      <map>
+        <entry key="app/src/main/res/drawable/bg_circle.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/bg_square.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/bg_start.xml" value="0.135" />
+        <entry key="app/src/main/res/drawable/ic_back.xml" value="0.1025" />
+        <entry key="app/src/main/res/drawable/ic_down.xml" value="0.1025" />
+        <entry key="app/src/main/res/drawable/ic_list.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/ic_post.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/activity_answer.xml" value="0.12771739130434784" />
+        <entry key="app/src/main/res/layout/activity_detail.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_info_change.xml" value="0.22239583333333332" />
+        <entry key="app/src/main/res/layout/activity_join.xml" value="0.21331521739130435" />
+        <entry key="app/src/main/res/layout/activity_login.xml" value="0.20425724637681159" />
+        <entry key="app/src/main/res/layout/activity_main.xml" value="0.19610507246376813" />
+        <entry key="app/src/main/res/layout/activity_my_post.xml" value="0.23052536231884058" />
+        <entry key="app/src/main/res/layout/activity_notice.xml" value="0.12771739130434784" />
+        <entry key="app/src/main/res/layout/activity_notice_detail.xml" value="0.12771739130434784" />
+        <entry key="app/src/main/res/layout/activity_question.xml" value="0.12771739130434784" />
+        <entry key="app/src/main/res/layout/activity_question_detail.xml" value="0.12771739130434784" />
+        <entry key="app/src/main/res/layout/activity_question_list.xml" value="0.12771739130434784" />
+        <entry key="app/src/main/res/layout/activity_registration.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/activity_setting.xml" value="0.23052536231884058" />
+        <entry key="app/src/main/res/layout/activity_splash.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_update.xml" value="0.10371376811594203" />
+        <entry key="app/src/main/res/layout/activity_write_notice.xml" value="0.12771739130434784" />
+        <entry key="app/src/main/res/layout/comment_item.xml" value="0.18" />
+        <entry key="app/src/main/res/layout/fragment_chatting.xml" value="0.22735507246376813" />
+        <entry key="app/src/main/res/layout/fragment_home.xml" value="0.14447463768115942" />
+        <entry key="app/src/main/res/layout/fragment_myinfo.xml" value="0.15214384508990317" />
+        <entry key="app/src/main/res/layout/fragment_myinformation.xml" value="0.14447463768115942" />
+        <entry key="app/src/main/res/layout/fragment_town.xml" value="0.22735507246376813" />
+        <entry key="app/src/main/res/layout/item_image.xml" value="0.1" />
+        <entry key="app/src/main/res/layout/list_item.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/notice_item.xml" value="0.12771739130434784" />
+        <entry key="app/src/main/res/layout/question_item.xml" value="0.12771739130434784" />
+        <entry key="app/src/main/res/layout/town_list_item.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/town_type_item.xml" value="0.335" />
+        <entry key="app/src/main/res/menu/bnv.xml" value="0.23802083333333332" />
+      </map>
+    </option>
+  </component>
+  <component name="ProjectRootManager" version="2" languageLevel="JDK_11" default="true" project-jdk-name="Android Studio default JDK" project-jdk-type="JavaSDK">
+    <output url="file://$PROJECT_DIR$/build/classes" />
+  </component>
+  <component name="ProjectType">
+    <option name="id" value="Android" />
+  </component>
+</project>
