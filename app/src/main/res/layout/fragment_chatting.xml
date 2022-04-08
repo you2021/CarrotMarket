@@ -25,11 +25,12 @@
         android:layout_marginTop="10dp"/>
 
     <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/chatRoom"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/line"
-        android:layout_marginTop="10dp"/>
-
-
+        android:layout_marginTop="10dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:orientation="vertical"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

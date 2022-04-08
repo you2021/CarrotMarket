@@ -3,6 +3,7 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="app/src/main/res/drawable-v24/bg_edit.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/bg_circle.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/bg_square.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/bg_start.xml" value="0.135" />
@@ -11,6 +12,7 @@
         <entry key="app/src/main/res/drawable/ic_list.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_post.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_answer.xml" value="0.12771739130434784" />
+        <entry key="app/src/main/res/layout/activity_chatting.xml" value="0.15217391304347827" />
         <entry key="app/src/main/res/layout/activity_detail.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_info_change.xml" value="0.22239583333333332" />
         <entry key="app/src/main/res/layout/activity_join.xml" value="0.21331521739130435" />
@@ -27,15 +29,19 @@
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_update.xml" value="0.10371376811594203" />
         <entry key="app/src/main/res/layout/activity_write_notice.xml" value="0.12771739130434784" />
+        <entry key="app/src/main/res/layout/chatting_room_item.xml" value="0.15217391304347827" />
         <entry key="app/src/main/res/layout/comment_item.xml" value="0.18" />
         <entry key="app/src/main/res/layout/fragment_chatting.xml" value="0.22735507246376813" />
         <entry key="app/src/main/res/layout/fragment_home.xml" value="0.14447463768115942" />
         <entry key="app/src/main/res/layout/fragment_myinfo.xml" value="0.15214384508990317" />
         <entry key="app/src/main/res/layout/fragment_myinformation.xml" value="0.14447463768115942" />
         <entry key="app/src/main/res/layout/fragment_town.xml" value="0.22735507246376813" />
+        <entry key="app/src/main/res/layout/item_detail_image.xml" value="0.1" />
         <entry key="app/src/main/res/layout/item_image.xml" value="0.1" />
         <entry key="app/src/main/res/layout/list_item.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/my_messagebox_item.xml" value="0.25" />
         <entry key="app/src/main/res/layout/notice_item.xml" value="0.12771739130434784" />
+        <entry key="app/src/main/res/layout/other_messagebox_item.xml" value="0.33" />
         <entry key="app/src/main/res/layout/question_item.xml" value="0.12771739130434784" />
         <entry key="app/src/main/res/layout/town_list_item.xml" value="0.25" />
         <entry key="app/src/main/res/layout/town_type_item.xml" value="0.335" />

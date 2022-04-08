@@ -11,8 +11,9 @@ import java.net.CookieManager
 
 object RetrofitHelper {
 
-    private const val BASE_URL = "http://172.30.1.53:4000/"
+    private const val BASE_URL = "http://172.30.1.46:4000/"
     //192.168.200.115
+    //172.30.1.30
     //172.30.1.46
 
     val client = OkHttpClient.Builder()

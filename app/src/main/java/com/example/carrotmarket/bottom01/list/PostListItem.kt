@@ -8,4 +8,5 @@ data class PostListItem(
     val category : String,
     val price : String,
     val tittle: String,
+    val image : String
 )

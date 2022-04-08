@@ -189,30 +189,17 @@
 
     </RelativeLayout>
 
-<!--    <androidx.recyclerview.widget.RecyclerView-->
-<!--        android:id="@+id/pictureList"-->
-<!--        android:layout_width="0dp"-->
-<!--        android:layout_height="80dp"-->
-<!--        android:layout_marginBottom="10dp"-->
-<!--        android:layout_marginRight="8dp"-->
-<!--        app:layout_constraintLeft_toRightOf="@id/picture"-->
-<!--        app:layout_constraintRight_toRightOf="parent"-->
-<!--        app:layout_constraintBottom_toBottomOf="parent"-->
-<!--        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"-->
-<!--        android:orientation="horizontal"-->
-<!--        android:layout_marginLeft="8dp"/>-->
-
-    <ImageView
+    <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/pictureList"
-        android:layout_width="80dp"
+        android:layout_width="0dp"
         android:layout_height="80dp"
         android:layout_marginBottom="10dp"
         android:layout_marginRight="8dp"
         app:layout_constraintLeft_toRightOf="@id/picture"
+        app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        android:orientation="horizontal"
         android:layout_marginLeft="8dp"/>
-
-
-
 
 </androidx.constraintlayout.widget.ConstraintLayout>

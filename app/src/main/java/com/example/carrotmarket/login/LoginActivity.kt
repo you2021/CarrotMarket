@@ -31,6 +31,11 @@ class LoginActivity : AppCompatActivity() {
     private fun setObserver() {
         loginViewModel.idResult.observe(this, Observer {
             if (it.status == "success") {
+                val sp = getSharedPreferences("login", MODE_PRIVATE)
+                val edit = sp.edit()
+                edit.putString("id",binding.idEdt.text.toString())
+                edit.apply()
+
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
                 finish()

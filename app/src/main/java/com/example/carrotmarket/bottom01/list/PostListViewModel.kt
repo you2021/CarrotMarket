@@ -10,7 +10,6 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-// 면접 가기전에 class 명 바꾸기
 class PostListViewModel : ViewModel() {
 
     val retrofit: RetrofitService = RetrofitHelper.getRetrofitInstanceGson()

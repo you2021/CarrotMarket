@@ -11,7 +11,9 @@ import com.example.carrotmarket.bottom01.delete.PostDeleteViewModel
 import com.example.carrotmarket.bottom01.update.UpdateActivity
 import com.example.carrotmarket.bottom01.comment.CommentListAdapter
 import com.example.carrotmarket.bottom01.comment.CommentLookViewModel
+import com.example.carrotmarket.bottom03.ChattingActivity
 import com.example.carrotmarket.databinding.ActivityDetailBinding
+import java.util.ArrayList
 
 class DetailActivity : AppCompatActivity() {
 
@@ -21,15 +23,20 @@ class DetailActivity : AppCompatActivity() {
     lateinit var commentLookViewModel: CommentLookViewModel
     lateinit var deleteViewModel: PostDeleteViewModel
     lateinit var dialog:AlertDialog
+    val img : ArrayList<String> = ArrayList()
 
     var postId:String = ""
     var tittle:String = ""
     var category:String = ""
     var price:String = ""
     var comment:String = ""
+    var userId:String = ""
     var num = 0
 
     lateinit var adapter: CommentListAdapter
+    lateinit var imageAdapter : ImageAdapter
+
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,6 +49,9 @@ class DetailActivity : AppCompatActivity() {
 
         num = intent.getIntExtra("num", 0)
 
+        imageAdapter = ImageAdapter(this, img)
+        binding.iv.adapter = imageAdapter
+
         setDetailObserber()
         setCommentObserber()
         setCommentListObserber()
@@ -50,6 +60,7 @@ class DetailActivity : AppCompatActivity() {
         commentBtn()
         updateBtn()
         deleteBtn()
+        chattingBtn()
     }
 
     override fun onResume() {
@@ -66,11 +77,26 @@ class DetailActivity : AppCompatActivity() {
             binding.userIdTxt.text = it.user_id
             binding.tittleTxt.text = it.tittle
 
+            if(it.image == null){
+                img.add("")
+                imageAdapter.notifyDataSetChanged()
+            }else{
+
+                val imgArr = it.image.split(",")
+                for(t in imgArr){
+                    img.add(t)
+                    imageAdapter.notifyDataSetChanged()
+                }
+
+            }
+
+
             postId = it.id
             comment = it.comment
             tittle = it.tittle
             category = it.category
             price = it.price
+            userId = it.user_id
             commentLookViewModel.commentListfromServer(postId.toInt())
 
         })
@@ -128,6 +154,16 @@ class DetailActivity : AppCompatActivity() {
             dialog = builder.create()
             dialog.setCanceledOnTouchOutside(false)
             dialog.show()
+        }
+    }
+
+    fun chattingBtn(){
+        binding.chattingBtn.setOnClickListener {
+            val intent = Intent(this, ChattingActivity::class.java)
+            intent.putExtra("userId", userId)
+            intent.putExtra("init", "init")
+            intent.putExtra("room", "")
+            startActivity(intent)
         }
     }
 }

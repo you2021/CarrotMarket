@@ -3,27 +3,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.example.carrotmarket">
 
-    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
-    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
     <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:largeHeap="true"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
+        android:largeHeap="true"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CarrotMarket"
+        android:requestLegacyExternalStorage="true"
         android:usesCleartextTraffic="true">
+        <activity
+            android:name=".bottom03.ChattingActivity"
+            android:exported="false" />
         <activity
             android:name=".bottom04.question.QuestionListActivity"
             android:exported="false" />
-
         <activity
             android:name=".bottom04.question.QuestionDetailActivity"
-            android:exported="false"/>
-
+            android:exported="false" />
         <activity
             android:name=".bottom04.question.WriteAnswerActivity"
             android:exported="false" />

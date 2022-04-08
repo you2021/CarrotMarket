@@ -3,13 +3,13 @@ package com.example.carrotmarket
 
 import com.example.carrotmarket.bottom01.comment.CommentListItem
 import com.example.carrotmarket.bottom01.list.PostListItem
+import com.example.carrotmarket.bottom03.ChattingItem
+import com.example.carrotmarket.bottom03.chattingroom.ChattingRoomItem
 import com.example.carrotmarket.bottom04.notice.ManagerItem
 import com.example.carrotmarket.bottom04.notice.NoticeItem
 import com.example.carrotmarket.bottom04.question.AnswerItem
 import com.example.carrotmarket.bottom04.question.QuestionItem
 import okhttp3.MultipartBody
-import okhttp3.RequestBody
-import okhttp3.ResponseBody
 import retrofit2.Call
 import retrofit2.http.*
 
@@ -21,13 +21,13 @@ interface RetrofitService {
 
     @FormUrlEncoded
     @POST("/registration")
-    fun registration(@Field("comment") content:String, @Field("category") category:String, @Field("price") price:String, @Field("tittle") tittle:String, @Field("image") image: String):Call<ResultItem>
+    fun registration(@Field("comment") content:String, @Field("category") category:String, @Field("price") price:String, @Field("tittle") tittle:String, @Field("image") image: ArrayList<String>):Call<ResultItem>
 
     @Multipart
-    @POST("/registration")
+    @POST("/registration/thumbnail_upload")
     fun sendMediaFile(
-        @Part image: MultipartBody.Part,
-    ): Call<ResponseBody?>
+        @Part image: ArrayList<MultipartBody.Part>,
+    ): Call<java.util.ArrayList<String>>
 
     @GET("/getList")
     fun postList(): Call<ArrayList<PostListItem>>
@@ -99,6 +99,15 @@ interface RetrofitService {
     @POST("/answer")
     fun answer(@Field("no") no:Int):Call<java.util.ArrayList<AnswerItem>>
 
+    @GET("/chatting")
+    fun getRoom(): Call<ArrayList<ChattingRoomItem>>
 
+    @FormUrlEncoded
+    @POST("/socket")
+    fun socketInit(@Field("your_id") your_id:String):Call<ResultItem>
+
+    @FormUrlEncoded
+    @POST("/chattingList")
+    fun chattingList(@Field("room") room:String):Call<ArrayList<ChattingItem>>
 
 }
