@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -45,6 +46,9 @@ class FragmentMyInfo : Fragment() {
     private fun setObserver() {
         logout.result.observe(viewLifecycleOwner, Observer {
             if (it.status == "success") {
+                val pref = requireActivity().getSharedPreferences("login", AppCompatActivity.MODE_PRIVATE)
+                pref.edit().clear().apply()
+
                 val intent = Intent(requireActivity(), LoginActivity::class.java)
                 requireActivity().startActivity(intent)
             }

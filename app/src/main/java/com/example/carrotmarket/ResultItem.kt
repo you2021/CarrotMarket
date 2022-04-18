@@ -9,4 +9,5 @@ package com.example.carrotmarket
 data class ResultItem(
     val status : String,
     val code : String,
+    val id : String,
 )

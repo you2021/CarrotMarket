@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "84920070507",
+    "project_id": "fcmproject-c5d53",
+    "storage_bucket": "fcmproject-c5d53.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:84920070507:android:cc2c1ebf7e6e68479b1c2e",
+        "android_client_info": {
+          "package_name": "com.example.carrotmarket"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "84920070507-4tagod307mad7steshv8j8faoeqceae6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCTpuJ9tm9MhmenJ1AJ-pM30HVTEWw7zzA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "84920070507-4tagod307mad7steshv8j8faoeqceae6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:84920070507:android:4e0fa84c6b57d30b9b1c2e",
+        "android_client_info": {
+          "package_name": "com.jmtrue.notificationapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "84920070507-4tagod307mad7steshv8j8faoeqceae6.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCTpuJ9tm9MhmenJ1AJ-pM30HVTEWw7zzA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "84920070507-4tagod307mad7steshv8j8faoeqceae6.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

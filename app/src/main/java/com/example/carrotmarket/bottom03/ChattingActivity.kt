@@ -18,12 +18,12 @@ class ChattingActivity : AppCompatActivity() {
     lateinit var binding : ActivityChattingBinding
     lateinit var chattingViewModel: ChattingViewModel
     lateinit var chattingInitViewModel: ChattingInitViewModel
+    lateinit var chattingContentViewModel: ChattingContentViewModel
 
     var adapter:ChattingAdapter ?= null
     val items = ArrayList<ChattingItem>()
     var yourId = ""
-    var init = ""
-    var room = ""
+    var roomKey = ""
     var saveId = ""
     var check = false
 
@@ -34,19 +34,23 @@ class ChattingActivity : AppCompatActivity() {
         binding = ActivityChattingBinding.inflate(layoutInflater)
         chattingViewModel = ViewModelProvider(this).get(ChattingViewModel::class.java)
         chattingInitViewModel = ViewModelProvider(this).get(ChattingInitViewModel::class.java)
+        chattingContentViewModel = ViewModelProvider(this).get(ChattingContentViewModel::class.java)
         setContentView(binding.root)
 
-        yourId = intent.getStringExtra("userId")!!
-        init = intent.getStringExtra("init")!!
-        room = intent.getStringExtra("room")!!
+        yourId = intent.getStringExtra("userId").toString()
+        roomKey = intent.getStringExtra("roomKey")!!
+        Log.d("roomKey","activity : ${roomKey}")
 
-        val pref = this.getSharedPreferences("login", MODE_PRIVATE)
-        saveId = pref!!.getString("id","")!!
+
 
         adapter = ChattingAdapter(this, items)
         binding.chattingContent.adapter = adapter
 
         socket.connect()
+
+        socket.on("connect", Emitter.Listener {
+            socket.emit("init", "${roomKey}")
+        })
 
         socket.on("chatting", Emitter.Listener{
             Log.e("receive chatting","123")
@@ -66,9 +70,7 @@ class ChattingActivity : AppCompatActivity() {
         })
 
         setObserver()
-        setInitObserver()
 
-        chattingInit()
         chattingList()
         chattingSet()
         sendBtn()
@@ -76,7 +78,7 @@ class ChattingActivity : AppCompatActivity() {
     }
 
     fun setObserver(){
-        chattingViewModel.result.observe(this, {
+        chattingViewModel.result.observe(this, {   // 톡 내용 불러오기
             if(check == true) return@observe
             for(i in 0..it.size-1){
                 items.add(ChattingItem(it[i].comment,it[i].id, "ooo"))
@@ -84,21 +86,15 @@ class ChattingActivity : AppCompatActivity() {
             }
             check = true
         })
-    }
 
-    fun setInitObserver(){
-        if (init == "init"){
-            chattingInitViewModel.result.observe(this,{
-                val room = "room_${yourId}"
-                if (it.status == "success") socketOn(room)
+        chattingInitViewModel.result.observe(this,{   // 룸 정보 저장
+            Log.d("room","${it.status} : ${it.code}")
+        })
 
-            })
-        }else socketOn(room)
-    }
-
-    fun socketOn(room:String){
-        socket.on("connect", Emitter.Listener {
-            socket.emit("init", "${room}")
+        chattingContentViewModel.result.observe(this,{   // 내용 저장
+            val text = binding.contentEt.text.toString()
+            binding.contentEt.setText("")
+            if(it.status == "success") socket.emit("chatting", text )
         })
     }
 
@@ -109,8 +105,10 @@ class ChattingActivity : AppCompatActivity() {
     fun sendBtn(){
         binding.send.setOnClickListener {
             val text = binding.contentEt.text.toString()
-            binding.contentEt.setText("")
-            socket.emit("chatting", text, saveId)
+
+            if(yourId != "") chattingInitViewModel.chattingInitToServer(yourId, roomKey)
+
+            chattingContentViewModel.chattingContentToServer(roomKey, text)
 
             items.add(ChattingItem(text, saveId, "ooo"))
             adapter!!.notifyDataSetChanged()
@@ -118,12 +116,7 @@ class ChattingActivity : AppCompatActivity() {
         }
     }
 
-    fun chattingInit(){
-        chattingInitViewModel.chattingInitToServer(yourId)
-    }
-
     fun chattingList(){
-        if(check == true) return
-        chattingViewModel.chattingFromServer(room)
+        chattingViewModel.chattingFromServer(roomKey)
     }
 }

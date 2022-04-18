@@ -9,6 +9,7 @@ import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentTransaction
+import com.bumptech.glide.util.Util
 import com.example.carrotmarket.bottom01.FragmentHome
 import com.example.carrotmarket.bottom02.FragmentTown
 import com.example.carrotmarket.bottom03.FragmentChatting
@@ -17,10 +18,6 @@ import com.example.carrotmarket.databinding.ActivityMainBinding
 import com.google.android.material.bottomnavigation.BottomNavigationView
 import io.socket.client.IO
 import io.socket.emitter.Emitter
-
-// 절대로 MainActivity에서 ui 만들지 말기
-// 굳이 bottom Navigation 은 괜찮
-// 로그인이나 초기 화면 초기화 같은건 SlashActivity 를 별도로 만들어서 사용
 
 class MainActivity : AppCompatActivity() {
 
@@ -49,6 +46,7 @@ class MainActivity : AppCompatActivity() {
         fragmentHome = FragmentHome.newInstance()
         supportFragmentManager.beginTransaction().add(R.id.container, fragmentHome).commitAllowingStateLoss()
         bottomBtn()
+
     }
 
     fun bottomBtn(){

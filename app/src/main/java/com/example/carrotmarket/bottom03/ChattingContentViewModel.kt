@@ -19,7 +19,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.util.ArrayList
 
-class ChattingInitViewModel : ViewModel() {
+class ChattingContentViewModel : ViewModel() {
 
     val retrofit: RetrofitService = RetrofitHelper.getRetrofitInstanceGson()
         .create(RetrofitService::class.java)
@@ -29,8 +29,8 @@ class ChattingInitViewModel : ViewModel() {
         get() = _result
 
 
-    fun chattingInitToServer(your_id :String, roomKey :String){
-        retrofit.socketInit(your_id, roomKey).enqueue(object : Callback<ResultItem> {
+    fun chattingContentToServer(roomKey :String, text:String){
+        retrofit.socketUser(roomKey, text).enqueue(object : Callback<ResultItem> {
             override fun onResponse(call: Call<ResultItem>, response: Response<ResultItem>) {
 
                 if (response.isSuccessful){

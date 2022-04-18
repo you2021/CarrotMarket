@@ -81,13 +81,11 @@ class DetailActivity : AppCompatActivity() {
                 img.add("")
                 imageAdapter.notifyDataSetChanged()
             }else{
-
                 val imgArr = it.image.split(",")
                 for(t in imgArr){
                     img.add(t)
                     imageAdapter.notifyDataSetChanged()
                 }
-
             }
 
 
@@ -161,8 +159,7 @@ class DetailActivity : AppCompatActivity() {
         binding.chattingBtn.setOnClickListener {
             val intent = Intent(this, ChattingActivity::class.java)
             intent.putExtra("userId", userId)
-            intent.putExtra("init", "init")
-            intent.putExtra("room", "")
+            intent.putExtra("postId", postId)
             startActivity(intent)
         }
     }

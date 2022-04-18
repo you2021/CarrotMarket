@@ -36,6 +36,14 @@
         app:layout_constraintRight_toRightOf="parent"
         app:layout_constraintTop_toBottomOf="@id/pwEdt" />
 
+    <ImageView
+        android:id="@+id/kakaoLogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/btn"
+        android:src="@drawable/kakao_login"
+        android:layout_marginTop="20dp"/>
+
 
     <Button
         android:id="@+id/joinBtn"
@@ -45,6 +53,6 @@
         android:text="회원가입"
         app:layout_constraintLeft_toLeftOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/btn" />
+        app:layout_constraintTop_toBottomOf="@id/kakaoLogin" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

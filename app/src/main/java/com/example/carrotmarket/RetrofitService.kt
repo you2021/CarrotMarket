@@ -16,6 +16,10 @@ import retrofit2.http.*
 interface RetrofitService {
 
     @FormUrlEncoded
+    @POST("/loginCheck")
+    fun loginCheck(@Field("id") id:String):Call<ResultItem>
+
+    @FormUrlEncoded
     @POST("/login")
     fun login(@Field("id") id:String,@Field("pw") pw:String,):Call<ResultItem>
 
@@ -104,10 +108,14 @@ interface RetrofitService {
 
     @FormUrlEncoded
     @POST("/socket")
-    fun socketInit(@Field("your_id") your_id:String):Call<ResultItem>
+    fun socketInit(@Field("your_id") your_id:String, @Field("roomKey") roomKey:String, ):Call<ResultItem>
+
+    @FormUrlEncoded
+    @POST("/socket/user")
+    fun socketUser(@Field("roomKey") roomKey:String, @Field("content") content:String):Call<ResultItem>
 
     @FormUrlEncoded
     @POST("/chattingList")
-    fun chattingList(@Field("room") room:String):Call<ArrayList<ChattingItem>>
+    fun chattingList(@Field("roomKey") roomKey:String):Call<ArrayList<ChattingItem>>
 
 }

@@ -3,10 +3,12 @@ package com.example.carrotmarket.bottom03.chattingroom
 import android.content.Intent
 import android.graphics.BitmapFactory
 import android.os.Handler
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.Toast
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.carrotmarket.R
@@ -19,10 +21,12 @@ import java.net.MalformedURLException
 import java.net.URL
 
 
-class ChattingRoomAdapter(var items: ArrayList<ChattingRoomItem>) :  RecyclerView.Adapter<ChattingRoomAdapter.VH>(){
+class ChattingRoomAdapter(var items: ArrayList<ChattingRoomItem>) :
+    RecyclerView.Adapter<ChattingRoomAdapter.VH>() {
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
-        val binding = ChattingRoomItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
+        val binding =
+            ChattingRoomItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
         return VH(binding)
     }
 
@@ -32,20 +36,23 @@ class ChattingRoomAdapter(var items: ArrayList<ChattingRoomItem>) :  RecyclerVie
 
     override fun getItemCount(): Int = items.size
 
-    class VH(private val binding: ChattingRoomItemBinding):RecyclerView.ViewHolder(binding.root){
+    class VH(private val binding: ChattingRoomItemBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        fun bind(item : ChattingRoomItem){
-            binding.yourId.text = item.your_id
-            binding.time .text = item.dateTime
+        fun bind(item: ChattingRoomItem) {
+            val pref =
+                binding.root.context.getSharedPreferences("login", AppCompatActivity.MODE_PRIVATE)
+            val saveId = pref!!.getString("id", "")!!
+
+            if (saveId == item.your_id) binding.yourId.text = item.my_id
+            else binding.yourId.text = item.your_id
+
+            binding.time.text = item.dateTime
 
             itemView.setOnClickListener {
-
-                    val intent = Intent(binding.root.context, ChattingActivity::class.java)
-                    intent.putExtra("room", item.room)
-                    intent.putExtra("userId", "")
-                    intent.putExtra("init", "")
-                    binding.root.context.startActivity(intent)
-
+                val intent = Intent(binding.root.context, ChattingActivity::class.java)
+                intent.putExtra("roomKey", item.roomKey)
+                Log.d("roomKey","key : ${item.roomKey}")
+                binding.root.context.startActivity(intent)
             }
         }
 

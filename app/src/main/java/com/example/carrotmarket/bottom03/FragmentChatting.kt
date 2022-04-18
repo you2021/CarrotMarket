@@ -30,7 +30,6 @@ class FragmentChatting : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         setObserver()
-
     }
 
     fun setObserver(){
