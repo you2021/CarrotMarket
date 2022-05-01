@@ -17,6 +17,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="공지사항"
+            android:textSize="20dp"
             android:textStyle="bold"/>
 
         <TextView
@@ -33,7 +34,7 @@
         android:layout_width="match_parent"
         android:layout_height="1dp"
         app:layout_constraintTop_toBottomOf="@id/notice"
-        android:background="#CAC9C9"
+        android:background="#D6D6D6"
         android:layout_marginTop="5dp"/>
 
     <androidx.recyclerview.widget.RecyclerView

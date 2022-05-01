@@ -1,13 +1,14 @@
-package com.example.carrotmarket.bottom02.townList
+package com.example.carrotmarket.bottom02.types
 
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
+import com.example.carrotmarket.bottom02.townList.TownItem
 import com.example.carrotmarket.databinding.TownListItemBinding
 import java.util.ArrayList
 
-class TownListAdapter(var items: ArrayList<TownItem>) :  RecyclerView.Adapter<TownListAdapter.VH>(){
+class TypeAdapter(var items: ArrayList<TownItem>) :  RecyclerView.Adapter<TypeAdapter.VH>(){
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): VH {
         val binding = TownListItemBinding.inflate(LayoutInflater.from(parent.context), parent, false)
@@ -26,13 +27,7 @@ class TownListAdapter(var items: ArrayList<TownItem>) :  RecyclerView.Adapter<To
             binding.typeTxt.text = item.type
             binding.contents.text = item.contents
             binding.time.text = item.time
-    
-//            itemView.setOnClickListener {
-//                val pos:Int = getLayoutPosition()
-//                val intent = Intent(binding.root.context, DetailActivity::class.java)
-//                intent.putExtra("num", pos)
-//                binding.root.context.startActivity(intent)
-//            }
+
         }
 
     }

@@ -1,5 +1,6 @@
 package com.example.carrotmarket.bottom02
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,6 +12,7 @@ import com.example.carrotmarket.bottom01.list.PostListAdapter
 import com.example.carrotmarket.bottom01.list.PostListViewModel
 import com.example.carrotmarket.bottom02.townList.TownListAdapter
 import com.example.carrotmarket.bottom02.townList.TownListViewModel
+import com.example.carrotmarket.bottom02.townRegistration.RegistrationActivity
 import com.example.carrotmarket.bottom02.types.TownTypeAdapter
 import com.example.carrotmarket.bottom02.types.TownTypeViewModel
 import com.example.carrotmarket.databinding.FragmentTownBinding
@@ -36,9 +38,15 @@ class FragmentTown : Fragment() {
 
         setListObserver()
         setTypeObserver()
+        clickBtn()
 
         townTypeViewModel.type()
 
+    }
+
+    override fun onStart() {
+        super.onStart()
+        townListViewModel.listFromServer()
     }
 
     fun setListObserver(){
@@ -55,6 +63,13 @@ class FragmentTown : Fragment() {
 
             binding.type.adapter = typeAdapter
         })
+    }
+
+    fun clickBtn(){
+        binding.fabBtn.setOnClickListener {
+            val intent = Intent(requireActivity(), RegistrationActivity::class.java)
+            startActivity(intent)
+        }
     }
 
     companion object {

@@ -1,33 +1,47 @@
 package com.example.carrotmarket.login
 
 import android.content.Intent
+import android.graphics.Paint
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
-import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
+import com.example.carrotmarket.FCMViewModel
 import com.example.carrotmarket.MainActivity
-import com.example.carrotmarket.R
 import com.example.carrotmarket.databinding.ActivityLoginBinding
 import com.example.carrotmarket.join.JoinActivity
 import com.example.carrotmarket.join.JoinViewModel
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.android.gms.tasks.Task
+import com.google.firebase.messaging.FirebaseMessaging
 import com.kakao.sdk.auth.model.OAuthToken
 import com.kakao.sdk.user.UserApiClient
 
 class LoginActivity : AppCompatActivity() {
 
+    companion object{
+        val PRIMARY_CHNNEL_ID = "channel"
+        var token: String?=null
+    }
+
     lateinit var binding : ActivityLoginBinding
     lateinit var loginViewModel: LoginViewModel
     lateinit var joinViewModel: JoinViewModel
+
+    var id :String ? = null
+    var name :String ? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         loginViewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
         joinViewModel = ViewModelProvider(this).get(JoinViewModel::class.java)
+
         setContentView(binding.root)
+
+        binding.joinBtn.setPaintFlags(binding.joinBtn.paintFlags or Paint.UNDERLINE_TEXT_FLAG)
 
         setObserver()
         idToServerBtn()
@@ -38,27 +52,30 @@ class LoginActivity : AppCompatActivity() {
     private fun setObserver() {
         loginViewModel.idResult.observe(this, Observer {  // 일반 로그인
             if (it.status == "success") {
-                getSharedPreferences("login", MODE_PRIVATE).edit().putString("id",it.id).apply()
+                getSharedPreferences("login", MODE_PRIVATE).edit().putString("key",it.cookie).apply()
+                Log.d("cookie", it.cookie)
                 intentNext()
             }else{
                 Toast.makeText(this, "아이디와 패스워드가 맞지 않습니다.", Toast.LENGTH_SHORT).show()
             }
         })
-        joinViewModel.result.observe(this, {  // 카카오 로그인 
+        joinViewModel.result.observe(this, {  // 카카오 로그인
+            Log.d("loginCheck","${it.code}")
+            intentNext()
+
             if (it.status == "success") {
-                getSharedPreferences("login", MODE_PRIVATE).edit().putString("id",it.id).apply()
-                Log.d("loginCheck","${it.id}")
-                intentNext()
+//                getSharedPreferences("login", MODE_PRIVATE).edit().putString("id",it.id).apply()
+                Log.d("loginCheck","${it.cookie}")
+
             }
         })
+
+
     }
 
     fun idToServerBtn() {
         binding.btn.setOnClickListener {
-            // 방어코드 : Exception 방어
-            if (binding.idEdt.text.toString() != null) {
-                loginViewModel.idToServer(binding.idEdt.text.toString(), binding.pwEdt.text.toString())
-            }
+            loginViewModel.idToServer(binding.idEdt.text.toString(), binding.pwEdt.text.toString())
         }
     }
 
@@ -74,13 +91,12 @@ class LoginActivity : AppCompatActivity() {
         UserApiClient.instance.me { user, error ->
             if (error != null) Log.i("KakaoError", error.toString())
             else{
-                val id = user!!.id.toString()
+                id = user!!.id.toString()
                 val profile = user.kakaoAccount?.profile?.thumbnailImageUrl  // 프로필 이미지
-                val name = user.kakaoAccount?.profile?.nickname!!
+                name = user.kakaoAccount?.profile?.nickname!!
 
-                joinViewModel.joinInfoToServer(id, "", name)
-
-
+//                fcm()
+//                joinViewModel.joinInfoToServer(id!!, "", name!!)
                 Log.i("loginCheck", "$id , $name, $profile")
             }
         }

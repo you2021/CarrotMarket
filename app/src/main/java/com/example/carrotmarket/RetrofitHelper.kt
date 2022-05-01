@@ -11,7 +11,7 @@ import java.net.CookieManager
 
 object RetrofitHelper {
 
-    private const val BASE_URL = "http://172.30.1.3:4000/"
+    private const val BASE_URL = "http://192.168.200.115:4000/"
     //192.168.200.115 : home
     //172.30.1.6 : caffe
     //172.30.1.30

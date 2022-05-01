@@ -1,17 +1,14 @@
-package com.example.carrotmarket.join
+package com.example.carrotmarket
 
 import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.carrotmarket.ResultItem
-import com.example.carrotmarket.RetrofitHelper
-import com.example.carrotmarket.RetrofitService
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class JoinViewModel : ViewModel() {
+class FCMViewModel : ViewModel() {
 
     val retrofit: RetrofitService = RetrofitHelper.getRetrofitInstanceGson()
         .create(RetrofitService::class.java)
@@ -20,8 +17,8 @@ class JoinViewModel : ViewModel() {
     val result : LiveData<ResultItem>
         get() = _result
 
-    fun joinInfoToServer(id:String, pw:String, name:String, city : String){
-        retrofit.join(id, pw, name, city).enqueue(object :
+    fun fcmToServer(fcm:String){
+        retrofit.save(fcm).enqueue(object :
             Callback<ResultItem> {
             override fun onResponse(call: Call<ResultItem>, response: Response<ResultItem>) {
 
@@ -29,7 +26,7 @@ class JoinViewModel : ViewModel() {
                     _result.value = response.body()
                     Log.d("resultValue", "${response.body()}")
                 }else {
-                    Log.d("Fail : ", "${response.errorBody()}")
+                    Log.d("token Fail : ", "${response.errorBody()}")
                 }
             }
 

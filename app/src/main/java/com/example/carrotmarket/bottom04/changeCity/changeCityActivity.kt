@@ -1,4 +1,4 @@
-package com.example.carrotmarket.join
+package com.example.carrotmarket.bottom04.changeCity
 
 import android.Manifest
 import android.content.pm.PackageManager
@@ -10,29 +10,27 @@ import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
-import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.example.carrotmarket.databinding.ActivityJoinBinding
+import com.example.carrotmarket.databinding.ActivityChangeCityBinding
 import net.daum.mf.map.api.MapPOIItem
 import net.daum.mf.map.api.MapPoint
 import net.daum.mf.map.api.MapView
 import java.util.*
 
-class JoinActivity : AppCompatActivity() {
-
-    lateinit var binding : ActivityJoinBinding
-    lateinit var joinViewModel: JoinViewModel
+class changeCityActivity : AppCompatActivity() {
+    lateinit var binding : ActivityChangeCityBinding
+    lateinit var cityViewModel: ChangeCityViewModel
     var city = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        binding = ActivityJoinBinding.inflate(layoutInflater)
-        joinViewModel = ViewModelProvider(this).get(JoinViewModel::class.java)
+        binding = ActivityChangeCityBinding.inflate(layoutInflater)
+        cityViewModel = ViewModelProvider(this).get(ChangeCityViewModel::class.java)
         setContentView(binding.root)
 
         setObserver()
         location()
-        joinBtn()
+        btn()
 
     }
 
@@ -88,30 +86,19 @@ class JoinActivity : AppCompatActivity() {
         marker.selectedMarkerType =
             MapPOIItem.MarkerType.RedPin // 마커를 클릭했을때, 기본으로 제공하는 RedPin 마커 모양.
 
-
         mapView.addPOIItem(marker)
-
-
     }
 
-    private fun setObserver() {
-        joinViewModel.result.observe(this, Observer {
-            if (it.status == "success") {
-                getSharedPreferences("login", MODE_PRIVATE).edit().putString("id",it.cookie).apply()
-                Toast.makeText(this, "회원가입이 되었습니다.", Toast.LENGTH_SHORT).show()
-                Log.d("loginCheck","${it.cookie}")
-                finish()
-            }else{
-                Toast.makeText(this, "중복된 아이디 입니다.", Toast.LENGTH_SHORT).show()
-            }
+    fun setObserver(){
+        cityViewModel.result.observe(this, {
+            Toast.makeText(this, "변경이 되었습니다.", Toast.LENGTH_SHORT).show()
+            finish()
         })
     }
 
-    fun joinBtn(){
-        if(binding.userId.text != null){
-            binding.joinBtn.setOnClickListener {
-                joinViewModel.joinInfoToServer(binding.userId.text.toString(),binding.userPw.text.toString(),binding.userName.text.toString(),city)
-            }
+    fun btn(){
+        binding.changeBtn.setOnClickListener {
+            cityViewModel.cityToServer(city)
         }
     }
 

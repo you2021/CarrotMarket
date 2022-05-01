@@ -142,6 +142,7 @@
         app:layout_constraintTop_toBottomOf="@id/guideline">
 
         <RelativeLayout
+            android:id="@+id/changeCityBtn"
             android:layout_width="match_parent"
             android:layout_height="30dp">
 
@@ -154,14 +155,15 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="내 동네"
-                android:textSize="20dp"
                 android:layout_centerVertical="true"
-                android:layout_toRightOf="@id/point"/>
+                android:layout_toRightOf="@id/point"
+                android:text="내 동네"
+                android:textSize="20dp" />
 
         </RelativeLayout>
 
         <RelativeLayout
+            android:id="@+id/categoryBtn"
             android:layout_width="match_parent"
             android:layout_height="30dp"
             android:layout_marginTop="20dp">
@@ -256,27 +258,6 @@
         </RelativeLayout>
 
         <RelativeLayout
-            android:layout_width="match_parent"
-            android:layout_height="30dp"
-            android:layout_marginTop="20dp">
-
-            <ImageView
-                android:id="@+id/invite"
-                android:layout_width="50dp"
-                android:layout_height="match_parent"
-                android:src="@drawable/invite"/>
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="match_parent"
-                android:text="친구 초대"
-                android:textSize="20dp"
-                android:layout_centerVertical="true"
-                android:layout_toRightOf="@id/invite"/>
-
-        </RelativeLayout>
-
-        <RelativeLayout
             android:id="@+id/setting"
             android:layout_width="match_parent"
             android:layout_height="30dp"
@@ -291,22 +272,14 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                android:text="앱 설정"
-                android:textSize="20dp"
                 android:layout_centerVertical="true"
-                android:layout_toRightOf="@id/settingIv"/>
+                android:layout_toRightOf="@id/settingIv"
+                android:text="앱 설정"
+                android:textSize="20dp" />
 
         </RelativeLayout>
 
     </LinearLayout>
-
-    <Button
-        android:id="@+id/logout"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/layout2"
-        android:layout_marginTop="10dp"
-        android:text="로그아웃"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

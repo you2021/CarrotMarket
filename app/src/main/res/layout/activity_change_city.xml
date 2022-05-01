@@ -4,34 +4,39 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".join.JoinActivity"
-    android:padding="10dp">
+    tools:context=".bottom04.changeCity.changeCityActivity">
 
-    <EditText
-        android:id="@+id/userId"
+    <RelativeLayout
+        android:id="@+id/info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="10dp"
-        android:hint="id"/>
+        android:layout_margin="10dp"
+        app:layout_constraintTop_toTopOf="parent">
 
-    <EditText
-        android:id="@+id/userPw"
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_back" />
+
+        <TextView
+            android:id="@+id/change"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@id/back"
+            android:text="위치 설정"
+            android:textSize="20dp" />
+
+    </RelativeLayout>
+
+    <View
+        android:id="@+id/line"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/userId"
-        android:layout_marginTop="10dp"
-        android:hint="pw"/>
-
-    <EditText
-        android:id="@+id/userName"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/userPw"
-        android:layout_marginTop="10dp"
-        android:hint="name"/>
-
-
+        android:layout_height="1dp"
+        app:layout_constraintTop_toBottomOf="@id/info"
+        android:background="#D6D6D6"
+        android:layout_marginTop="10dp"/>
 
     <TextView
         android:id="@+id/city"
@@ -39,9 +44,10 @@
         android:layout_height="wrap_content"
         android:text="위치 : "
         android:textSize="20dp"
-        app:layout_constraintTop_toBottomOf="@id/userName"
+        app:layout_constraintTop_toBottomOf="@id/line"
         app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginTop="20dp"/>
+        android:layout_marginTop="20dp"
+        android:layout_marginLeft="10dp"/>
 
     <TextView
         android:id="@+id/cityTxt"
@@ -50,7 +56,7 @@
         android:text="city"
         android:textStyle="bold"
         android:textSize="20dp"
-        app:layout_constraintTop_toBottomOf="@id/userName"
+        app:layout_constraintTop_toBottomOf="@id/line"
         app:layout_constraintLeft_toRightOf="@id/city"
         android:layout_marginTop="20dp"
         android:layout_marginLeft="5dp"/>
@@ -60,6 +66,8 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         android:layout_marginTop="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
         app:layout_constraintTop_toBottomOf="@id/cityTxt"
         app:layout_constraintBottom_toTopOf="@id/guideBottom"/>
 
@@ -71,28 +79,14 @@
         android:orientation="horizontal"/>
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/joinBtn"
-        android:layout_width="0dp"
+        android:id="@+id/changeBtn"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:layout_constraintTop_toBottomOf="@id/map_view"
-        app:layout_constraintLeft_toLeftOf="@id/guideLeft"
-        app:layout_constraintRight_toRightOf="@id/guideRight"
         app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
         android:background="@drawable/bg_btn"
-        android:text="회원가입"/>
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideLeft"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintGuide_percent="0.15"
-        android:orientation="vertical"/>
-
-    <androidx.constraintlayout.widget.Guideline
-        android:id="@+id/guideRight"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintGuide_percent="0.85"
-        android:orientation="vertical"/>
+        android:text="변경하기"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

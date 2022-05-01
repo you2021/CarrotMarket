@@ -29,15 +29,13 @@ class FragmentHome : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         setObserver()
-
-
         fabBtn()
     }
 
     override fun onStart() {
         super.onStart()
 
-        listListViewModel.getlistFromServer()
+        listListViewModel.getListFromServer()
     }
 
     fun setObserver(){

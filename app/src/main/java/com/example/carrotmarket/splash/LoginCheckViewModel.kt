@@ -25,7 +25,7 @@ class LoginCheckViewModel : ViewModel() {
     fun loginCheckToServer(context:Context){
 
         val pref = context.getSharedPreferences("login", AppCompatActivity.MODE_PRIVATE)
-        val saveId = pref!!.getString("id","")!!
+        val saveId = pref!!.getString("key","")!!
 
         retrofit.loginCheck(saveId).enqueue(object :
             Callback<ResultItem> {

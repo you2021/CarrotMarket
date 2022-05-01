@@ -133,7 +133,6 @@ class registrationActivity : AppCompatActivity() {
 
     fun registrationToServerBtn() {
         binding.completion.setOnClickListener {
-            // 방어코드 : Exception 방어
             registrationViewModel.registrationToServer(
                 binding.etComment.text.toString(),
                 binding.category.text.toString(),

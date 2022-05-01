@@ -4,6 +4,7 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="app/src/main/res/drawable-v24/bg_edit.xml" value="0.1" />
+        <entry key="app/src/main/res/drawable/bg_btn.xml" value="0.1325" />
         <entry key="app/src/main/res/drawable/bg_circle.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/bg_square.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/bg_start.xml" value="0.135" />
@@ -12,10 +13,13 @@
         <entry key="app/src/main/res/drawable/ic_list.xml" value="0.1" />
         <entry key="app/src/main/res/drawable/ic_post.xml" value="0.1" />
         <entry key="app/src/main/res/layout/activity_answer.xml" value="0.12771739130434784" />
+        <entry key="app/src/main/res/layout/activity_category.xml" value="0.2723735408560311" />
+        <entry key="app/src/main/res/layout/activity_change_city.xml" value="0.151268115942029" />
         <entry key="app/src/main/res/layout/activity_chatting.xml" value="0.15217391304347827" />
         <entry key="app/src/main/res/layout/activity_detail.xml" value="0.25" />
         <entry key="app/src/main/res/layout/activity_info_change.xml" value="0.22239583333333332" />
         <entry key="app/src/main/res/layout/activity_join.xml" value="0.21331521739130435" />
+        <entry key="app/src/main/res/layout/activity_kakao_map.xml" value="0.1358695652173913" />
         <entry key="app/src/main/res/layout/activity_location.xml" value="0.12083333333333333" />
         <entry key="app/src/main/res/layout/activity_location_maps.xml" value="0.10572916666666667" />
         <entry key="app/src/main/res/layout/activity_login.xml" value="0.20425724637681159" />
@@ -28,8 +32,10 @@
         <entry key="app/src/main/res/layout/activity_question_detail.xml" value="0.12771739130434784" />
         <entry key="app/src/main/res/layout/activity_question_list.xml" value="0.12771739130434784" />
         <entry key="app/src/main/res/layout/activity_registration.xml" value="0.22" />
+        <entry key="app/src/main/res/layout/activity_registration2.xml" value="0.1358695652173913" />
         <entry key="app/src/main/res/layout/activity_setting.xml" value="0.23052536231884058" />
         <entry key="app/src/main/res/layout/activity_splash.xml" value="0.25" />
+        <entry key="app/src/main/res/layout/activity_type.xml" value="0.151268115942029" />
         <entry key="app/src/main/res/layout/activity_update.xml" value="0.10371376811594203" />
         <entry key="app/src/main/res/layout/activity_write_notice.xml" value="0.12771739130434784" />
         <entry key="app/src/main/res/layout/chatting_room_item.xml" value="0.15217391304347827" />

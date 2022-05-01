@@ -3,6 +3,7 @@ package com.example.carrotmarket
 
 import com.example.carrotmarket.bottom01.comment.CommentListItem
 import com.example.carrotmarket.bottom01.list.PostListItem
+import com.example.carrotmarket.bottom02.townList.TownItem
 import com.example.carrotmarket.bottom03.ChattingItem
 import com.example.carrotmarket.bottom03.chattingroom.ChattingRoomItem
 import com.example.carrotmarket.bottom04.notice.ManagerItem
@@ -17,7 +18,7 @@ interface RetrofitService {
 
     @FormUrlEncoded
     @POST("/loginCheck")
-    fun loginCheck(@Field("id") id:String):Call<ResultItem>
+    fun loginCheck(@Field("key") key:String):Call<ResultItem>
 
     @FormUrlEncoded
     @POST("/login")
@@ -58,7 +59,7 @@ interface RetrofitService {
 
     @FormUrlEncoded
     @POST("/join")
-    fun join(@Field("ui_id") ui_id:String,@Field("ui_pw") ui_pw:String,@Field("ui_name") ui_name:String,):Call<ResultItem>
+    fun join(@Field("ui_id") ui_id:String,@Field("ui_pw") ui_pw:String,@Field("ui_name") ui_name:String, @Field("city") city:String):Call<ResultItem>
 
     @GET("/logout")
     fun logout():Call<ResultItem>
@@ -118,4 +119,22 @@ interface RetrofitService {
     @POST("/chattingList")
     fun chattingList(@Field("roomKey") roomKey:String):Call<ArrayList<ChattingItem>>
 
+    @FormUrlEncoded
+    @POST("/save")
+    fun save(@Field("fcmNo") fcmNo:String):Call<ResultItem>
+
+    @FormUrlEncoded
+    @POST("/townRegistration")
+    fun townRegistration(@Field("type") type:String,@Field("contents") contents:String):Call<ResultItem>
+
+    @GET("/list")
+    fun list(): Call<ArrayList<TownItem>>
+
+    @FormUrlEncoded
+    @POST("/typeList")
+    fun typeList(@Field("type") type:String,): Call<ArrayList<TownItem>>
+
+    @FormUrlEncoded
+    @POST("/change/updateCity")
+    fun updateCity(@Field("city") city:String):Call<ResultItem>
 }

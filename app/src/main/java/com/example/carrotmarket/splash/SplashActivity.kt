@@ -5,6 +5,7 @@ import android.content.Intent
 import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
+import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.ViewModelProvider
 import com.example.carrotmarket.MainActivity
@@ -40,11 +41,14 @@ class SplashActivity : AppCompatActivity() {
 
     fun setObserber(){  // 자동 로그인
         loginCheckViewModel.result.observe(this, {
+            Log.d("로그",it.code)
+
             if(it.status == "success"){
                 val intent = Intent(this, MainActivity::class.java)
                 startActivity(intent)
                 finish()
             }else{
+                getSharedPreferences("login", MODE_PRIVATE).edit().clear().apply()
                 val intent = Intent(this, LoginActivity::class.java)
                 startActivity(intent)
                 finish()

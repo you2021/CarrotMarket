@@ -19,7 +19,7 @@ class PostListViewModel : ViewModel() {
     val Result : LiveData<ArrayList<PostListItem>>
         get() = _Result
 
-    fun getlistFromServer(){
+    fun getListFromServer(){
         retrofit.postList().enqueue(object : Callback<ArrayList<PostListItem>> {
             override fun onResponse(call: Call<ArrayList<PostListItem>>, response: Response<ArrayList<PostListItem>>) {
 

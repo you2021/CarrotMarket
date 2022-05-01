@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.lifecycle.ViewModelProvider
 import com.example.carrotmarket.bottom01.comment.CommentRegistrationViewModel
@@ -87,8 +88,7 @@ class DetailActivity : AppCompatActivity() {
                     imageAdapter.notifyDataSetChanged()
                 }
             }
-
-
+            
             postId = it.id
             comment = it.comment
             tittle = it.tittle
@@ -159,7 +159,7 @@ class DetailActivity : AppCompatActivity() {
         binding.chattingBtn.setOnClickListener {
             val intent = Intent(this, ChattingActivity::class.java)
             intent.putExtra("userId", userId)
-            intent.putExtra("postId", postId)
+            intent.putExtra("roomKey", postId)
             startActivity(intent)
         }
     }

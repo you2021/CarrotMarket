@@ -1,4 +1,4 @@
-package com.example.carrotmarket.bottom04
+package com.example.carrotmarket.bottom02.townRegistration
 
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -11,8 +11,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-// 면접 가기전에 class 명 바꾸기
-class LogoutViewModel : ViewModel() {
+class RegistrationViewModel : ViewModel(){
 
     val retrofit: RetrofitService = RetrofitHelper.getRetrofitInstanceGson()
         .create(RetrofitService::class.java)
@@ -21,24 +20,22 @@ class LogoutViewModel : ViewModel() {
     val result : LiveData<ResultItem>
         get() = _result
 
-    fun logoutToServer(){
-        retrofit.logout().enqueue(object : Callback<ResultItem> {
+    fun registrationToServer(type:String, contents:String){
+
+        retrofit.townRegistration(type, contents).enqueue(object : Callback<ResultItem> {
             override fun onResponse(call: Call<ResultItem>, response: Response<ResultItem>) {
 
                 if (response.isSuccessful){
                     _result.value = response.body()
-                    Log.d("loginResult", "login id : ${response.body()}")
+                    Log.d("town", "${response.body()}")
                 }else {
-                    Log.d("loginResultFail : ", "${response.errorBody()}")
+                    Log.d("town Fail : ", "${response.errorBody()}")
                 }
             }
 
             override fun onFailure(call: Call<ResultItem>, t: Throwable) {
-                Log.i("loginResult","fail : ${(t.message).toString()}")
+                Log.d("town", "fail : ${t.message}")
             }
         })
     }
-
-
-
 }

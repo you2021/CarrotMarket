@@ -4,40 +4,41 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".bottom04.myPost.myPostActivity">
+    tools:context=".bottom02.types.TypeActivity">
 
     <RelativeLayout
-        android:id="@+id/myPost"
+        android:id="@+id/info"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_margin="10dp"
         app:layout_constraintTop_toTopOf="parent">
 
-        <TextView
+        <ImageView
+            android:id="@+id/back"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="내 개시글"
-            android:textSize="20dp"
-            android:textStyle="bold"/>
+            android:src="@drawable/ic_back" />
+
+        <TextView
+            android:id="@+id/text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@id/back"
+            android:text="text"
+            android:textSize="20dp" />
 
     </RelativeLayout>
 
-    <View
-        android:id="@+id/line"
-        android:layout_width="match_parent"
-        android:layout_height="1dp"
-        app:layout_constraintTop_toBottomOf="@id/myPost"
-        android:background="#D6D6D6"
-        android:layout_marginTop="5dp"/>
 
     <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/postList"
+        android:id="@+id/chattingContent"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        app:layout_constraintTop_toBottomOf="@id/line"
-        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-        android:orientation="vertical"/>
+        android:layout_height="0dp"
+        app:layout_constraintTop_toBottomOf="@id/info"
+        android:layout_margin="10dp"
+        android:orientation="vertical"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
 
 
 

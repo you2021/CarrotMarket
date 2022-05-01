@@ -21,6 +21,21 @@
         android:theme="@style/Theme.CarrotMarket"
         android:usesCleartextTraffic="true">
         <activity
+            android:name=".bottom04.changeCity.changeCityActivity"
+            android:exported="false" />
+        <activity
+            android:name=".bottom02.types.TypeActivity"
+            android:exported="false" />
+        <activity
+            android:name=".bottom02.townRegistration.RegistrationActivity"
+            android:exported="false" />
+        <activity
+            android:name=".bottom04.Interest.CategoryActivity"
+            android:exported="false" />
+        <activity
+            android:name=".join.KakaoMapActivity"
+            android:exported="false" />
+        <activity
             android:name=".join.LocationMapsActivity"
             android:exported="false" />
         <activity
@@ -97,11 +112,17 @@
             android:exported="true" /> <!-- FCM 메세지 수신 서비스 등록 -->
         <service
             android:name=".MyFirebaseMessagingService"
-            android:exported="false">
+            android:enabled="true"
+            android:exported="true"
+            android:stopWithTask="false">
             <intent-filter>
                 <action android:name="com.google.firebase.MESSAGING_EVENT" />
             </intent-filter>
         </service>
+
+        <meta-data
+            android:name="com.kakao.sdk.AppKey"
+            android:value="6e79090ffd244797258921cdc6e84985" />
 
         <activity
             android:name="com.kakao.sdk.auth.AuthCodeHandlerActivity"

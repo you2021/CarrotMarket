@@ -70,4 +70,8 @@ dependencies {
     implementation platform('com.google.firebase:firebase-bom:28.4.1')  //fcm
     implementation 'com.google.firebase:firebase-messaging-ktx'
     implementation 'com.google.firebase:firebase-analytics-ktx'
+
+//    compile files('libs/libDaumMapAndroid.jar')
+    implementation fileTree(include: ['*.jar'], dir: 'libs')  //kakao map
+    implementation files('libs/libDaumMapAndroid.jar')
 }

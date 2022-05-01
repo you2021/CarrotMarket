@@ -14,12 +14,13 @@ import androidx.core.app.NotificationCompat
 import androidx.core.app.NotificationManagerCompat
 import androidx.core.content.ContextCompat.getSystemService
 import com.example.carrotmarket.join.JoinActivity
+import com.example.carrotmarket.login.LoginActivity
 import com.google.firebase.messaging.FirebaseMessagingService
 import com.google.firebase.messaging.RemoteMessage
 
 class MyFirebaseMessagingService : FirebaseMessagingService() {
 
-    val channel = JoinActivity.PRIMARY_CHNNEL_ID
+    val channel = LoginActivity.PRIMARY_CHNNEL_ID
 
     companion object{
         var title: String? =  null
@@ -29,6 +30,9 @@ class MyFirebaseMessagingService : FirebaseMessagingService() {
 
     override fun onMessageReceived(p0: RemoteMessage) {
         super.onMessageReceived(p0)
+
+        Log.d("TOKEN", p0.data.toString())
+        Log.d("TOKEN", p0.notification.toString())
 
         sendNotification()
 

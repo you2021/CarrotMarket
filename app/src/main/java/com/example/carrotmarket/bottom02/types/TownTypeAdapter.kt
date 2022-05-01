@@ -1,7 +1,9 @@
 package com.example.carrotmarket.bottom02.types
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.carrotmarket.databinding.TownListItemBinding
 import com.example.carrotmarket.databinding.TownTypeItemBinding
@@ -16,6 +18,7 @@ class TownTypeAdapter(var items: ArrayList<Item>) :  RecyclerView.Adapter<TownTy
 
     override fun onBindViewHolder(holder: VH, position: Int) {
         holder.bind(items[position])
+        
     }
 
     override fun getItemCount(): Int = items.size
@@ -25,12 +28,12 @@ class TownTypeAdapter(var items: ArrayList<Item>) :  RecyclerView.Adapter<TownTy
         fun bind(item : Item){
             binding.text.text = item.text
     
-//            itemView.setOnClickListener {
-//                val pos:Int = getLayoutPosition()
-//                val intent = Intent(binding.root.context, DetailActivity::class.java)
-//                intent.putExtra("num", pos)
-//                binding.root.context.startActivity(intent)
-//            }
+            itemView.setOnClickListener {
+                val pos:Int = getLayoutPosition()
+                val intent = Intent(binding.root.context, TypeActivity::class.java)
+                intent.putExtra("text", item.text)
+                binding.root.context.startActivity(intent)
+            }
         }
 
     }

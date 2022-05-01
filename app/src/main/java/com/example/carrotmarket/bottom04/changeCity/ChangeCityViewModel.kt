@@ -1,4 +1,4 @@
-package com.example.carrotmarket.join
+package com.example.carrotmarket.bottom04.changeCity
 
 import android.util.Log
 import androidx.lifecycle.LiveData
@@ -7,11 +7,13 @@ import androidx.lifecycle.ViewModel
 import com.example.carrotmarket.ResultItem
 import com.example.carrotmarket.RetrofitHelper
 import com.example.carrotmarket.RetrofitService
+import com.example.carrotmarket.bottom04.notice.ManagerItem
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import java.util.ArrayList
 
-class JoinViewModel : ViewModel() {
+class ChangeCityViewModel : ViewModel() {
 
     val retrofit: RetrofitService = RetrofitHelper.getRetrofitInstanceGson()
         .create(RetrofitService::class.java)
@@ -20,22 +22,23 @@ class JoinViewModel : ViewModel() {
     val result : LiveData<ResultItem>
         get() = _result
 
-    fun joinInfoToServer(id:String, pw:String, name:String, city : String){
-        retrofit.join(id, pw, name, city).enqueue(object :
-            Callback<ResultItem> {
+    fun cityToServer(city:String){
+        retrofit.updateCity(city).enqueue(object : Callback<ResultItem> {
             override fun onResponse(call: Call<ResultItem>, response: Response<ResultItem>) {
 
                 if (response.isSuccessful){
                     _result.value = response.body()
-                    Log.d("resultValue", "${response.body()}")
                 }else {
-                    Log.d("Fail : ", "${response.errorBody()}")
+                    Log.d("loginResultFail : ", "${response.errorBody()}")
                 }
             }
 
             override fun onFailure(call: Call<ResultItem>, t: Throwable) {
-                Log.i("retrofitResult","fail : ${(t.message).toString()}")
+                Log.i("manager","manager fail : ${(t.message).toString()}")
             }
         })
     }
+
+
+
 }
