@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">CarrotMarket</string>
-    <string name="common_image_url">http://172.30.1.59:4000/image/</string>
+    <string name="common_image_url">http://geniusyj.com/image/</string>
     <string name="NATIVE_APP_KEY">6e79090ffd244797258921cdc6e84985</string>
     <string name="google_maps_key" templateMergeStrategy="preserve" translatable="false">AIzaSyCujbikvagFFVHkdcjdhY0_zp-L-1G0m3Q</string>
     <string name="title_activity_maps">MapsActivity</string>

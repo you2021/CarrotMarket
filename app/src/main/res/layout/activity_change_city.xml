@@ -25,7 +25,7 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
             android:layout_toRightOf="@id/back"
-            android:text="위치 설정"
+            android:text="위치 변경"
             android:textSize="20dp" />
 
     </RelativeLayout>

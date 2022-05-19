@@ -26,14 +26,14 @@ class DetailViewModel : ViewModel() {
 
                 if (response.isSuccessful){
                     _idResult.value = response.body()
-                    Log.d("resultValue", "${response.body()}")
+                    Log.d("detail", "${response.body()}")
                 }else {
-                    Log.d("Fail : ", "${response.errorBody()}")
+                    Log.d("detail Fail : ", "${response.errorBody()}")
                 }
             }
 
             override fun onFailure(call: Call<PostListItem>, t: Throwable) {
-                Log.i("retrofitResult","fail : ${(t.message).toString()}")
+                Log.i("detail","fail : ${(t.message).toString()}")
             }
         })
     }

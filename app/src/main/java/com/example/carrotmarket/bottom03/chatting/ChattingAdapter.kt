@@ -1,7 +1,6 @@
-package com.example.carrotmarket.bottom03
+package com.example.carrotmarket.bottom03.chatting
 
 import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,10 +8,6 @@ import android.widget.TextView
 import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.example.carrotmarket.R
-import com.example.carrotmarket.databinding.MyMessageboxItemBinding
-import com.example.carrotmarket.databinding.NoticeItemBinding
-import com.example.carrotmarket.databinding.OtherMessageboxItemBinding
-import com.example.carrotmarket.databinding.QuestionItemBinding
 import java.util.ArrayList
 
 class ChattingAdapter(val context: Context, var messages: ArrayList<ChattingItem>) :
@@ -37,12 +32,12 @@ class ChattingAdapter(val context: Context, var messages: ArrayList<ChattingItem
             val viewHolder = holder as MyMessageViewHolder
             holder.msg.text = currentMessage.comment
             holder.id.text = currentMessage.id
-//            holder.time = currentMessage.dateTime
+            holder.time.text = currentMessage.dateTime
         }else{
             val viewHolder = holder as OtherMessageViewHolder
             holder.msg.text = currentMessage.comment
             holder.id.text = currentMessage.id
-
+            holder.time.text = currentMessage.dateTime
         }
     }
 

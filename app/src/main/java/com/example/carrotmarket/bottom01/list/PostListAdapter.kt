@@ -7,6 +7,7 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.Toast
 import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.example.carrotmarket.R
@@ -34,10 +35,14 @@ class PostListAdapter(var items: ArrayList<PostListItem>) :  RecyclerView.Adapte
 //        context => binding.root.context
         fun bind(item : PostListItem){
             binding.tittleTxt.text = item.tittle
-            binding.dateTimeTxt.text = item.created_dt
             binding.priceTxt.text = "${item.price}원"
+
+            val date = item.created_dt.replace("T"," ")
+            val time = date.slice(IntRange(0,18))
+            binding.dateTimeTxt.text = time
+
             try {
-                if (item.image == null) Glide.with(binding.iv.context).load(R.drawable.no_image).into(binding.iv)
+                if (item.image == null || item.image == "") Glide.with(binding.iv.context).load(R.drawable.no_image).into(binding.iv)
                 else{
                     val imageArr = item.image.split(",")
                     Log.d("imageArr", imageArr[0])
@@ -54,7 +59,7 @@ class PostListAdapter(var items: ArrayList<PostListItem>) :  RecyclerView.Adapte
             itemView.setOnClickListener {
                 val pos:Int = getLayoutPosition()
                 val intent = Intent(binding.root.context, DetailActivity::class.java)
-                intent.putExtra("num", pos)
+                intent.putExtra("num", item.id.toInt())
                 binding.root.context.startActivity(intent)
             }
         }

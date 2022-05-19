@@ -5,10 +5,12 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import com.example.carrotmarket.bottom04.Interest.CategoryActivity
 import com.example.carrotmarket.bottom04.changeCity.changeCityActivity
+import com.example.carrotmarket.bottom04.interestList.InterestListActivity
 import com.example.carrotmarket.bottom04.myPost.myPostActivity
 import com.example.carrotmarket.bottom04.notice.NoticeActivity
 import com.example.carrotmarket.bottom04.question.QuestionListActivity
@@ -28,6 +30,7 @@ class FragmentMyInfo : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        binding.idTxt.text = requireActivity().getSharedPreferences("id", AppCompatActivity.MODE_PRIVATE).getString("myId","")!!
 
         settingBtn()
         myPostBtn()
@@ -35,16 +38,17 @@ class FragmentMyInfo : Fragment() {
         questionListBtn()
         categoryBtn()
         changeCity()
+        myListBtn()
     }
 
-    fun changeCity(){
+    fun changeCity(){  // 동네 변경
         binding.changeCityBtn.setOnClickListener {
             val intent = Intent(requireActivity(), changeCityActivity::class.java)
             requireActivity().startActivity(intent)
         }
     }
 
-    fun categoryBtn(){
+    fun categoryBtn(){  // 관심카테고리
         binding.categoryBtn.setOnClickListener {
             val intent = Intent(requireActivity(), CategoryActivity::class.java)
             requireActivity().startActivity(intent)
@@ -52,16 +56,23 @@ class FragmentMyInfo : Fragment() {
     }
 
 
-    fun settingBtn(){
+    fun settingBtn(){  // 설정
         binding.setting.setOnClickListener {
             val intent = Intent(requireActivity(), SettingActivity::class.java)
             requireActivity().startActivity(intent)
         }
     }
 
+    fun myListBtn(){ // 게시글
+        binding.mylist.setOnClickListener {
+            val intent = Intent(requireActivity(), InterestListActivity::class.java)
+            requireActivity().startActivity(intent)
+        }
+    }
 
 
-    fun myPostBtn(){
+
+    fun myPostBtn(){  // 게시글
         binding.myPost.setOnClickListener {
             val intent = Intent(requireActivity(), myPostActivity::class.java)
             requireActivity().startActivity(intent)

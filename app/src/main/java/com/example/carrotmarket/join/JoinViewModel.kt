@@ -20,8 +20,8 @@ class JoinViewModel : ViewModel() {
     val result : LiveData<ResultItem>
         get() = _result
 
-    fun joinInfoToServer(id:String, pw:String, name:String, city : String){
-        retrofit.join(id, pw, name, city).enqueue(object :
+    fun joinInfoToServer(id:String, pw:String, name:String,){
+        retrofit.join(id, pw, name).enqueue(object :
             Callback<ResultItem> {
             override fun onResponse(call: Call<ResultItem>, response: Response<ResultItem>) {
 

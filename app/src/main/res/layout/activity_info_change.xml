@@ -23,14 +23,15 @@
             android:layout_marginTop="10dp"
             android:hint="name"/>
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/joinBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:layout_constraintTop_toBottomOf="@id/userName"
             app:layout_constraintLeft_toLeftOf="parent"
             app:layout_constraintRight_toRightOf="parent"
-            android:layout_marginTop="10dp"
+            android:layout_marginTop="30dp"
+            android:background="@drawable/bg_btn"
             android:text="수정"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

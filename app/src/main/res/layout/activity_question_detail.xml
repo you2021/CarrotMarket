@@ -43,18 +43,34 @@
                 android:layout_alignParentRight="true"/>
         </RelativeLayout>
 
+        <View
+            android:id="@+id/line"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            app:layout_constraintTop_toBottomOf="@id/info"
+            android:background="#EFEFEF"
+            android:layout_marginTop="10dp"/>
+
         <TextView
             android:id="@+id/content"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/info"
+            app:layout_constraintTop_toBottomOf="@id/line"
             android:layout_margin="10dp"
             android:text="content"/>
+
+        <View
+            android:id="@+id/line2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            app:layout_constraintTop_toBottomOf="@id/content"
+            android:background="#EFEFEF"
+            android:layout_marginTop="10dp"/>
 
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:layout_constraintTop_toBottomOf="@id/content"
+            app:layout_constraintTop_toBottomOf="@id/line2"
             android:layout_margin="10dp">
 
             <TextView

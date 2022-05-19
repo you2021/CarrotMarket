@@ -19,14 +19,13 @@
             android:layout_width="100dp"
             android:layout_height="100dp"
             android:layout_marginLeft="10dp"
-            android:src="@drawable/img_person" />
+            android:src="@drawable/profile" />
 
         <TextView
             android:id="@+id/idTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="10dp"
             android:layout_toRightOf="@id/iv"
             android:text="id"
             android:textSize="30dp" />
@@ -93,9 +92,6 @@
 
             </RelativeLayout>
 
-
-
-
         </RelativeLayout>
 
 
@@ -103,6 +99,12 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_weight="1">
+
+        <RelativeLayout
+            android:id="@+id/mylist"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerHorizontal="true">
 
             <RelativeLayout
                 android:id="@+id/imageTwo"
@@ -115,7 +117,10 @@
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:layout_centerInParent="true"
-                    android:layout_margin="8dp"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginBottom="8dp"
                     android:src="@drawable/ic_list" />
 
             </RelativeLayout>
@@ -129,6 +134,8 @@
                 android:text="관심목록"
                 android:textSize="18dp"
                 android:textStyle="bold" />
+        </RelativeLayout>
+
         </RelativeLayout>
 
     </LinearLayout>
@@ -250,7 +257,7 @@
                     android:layout_height="match_parent"
                     android:layout_centerVertical="true"
                     android:layout_toRightOf="@id/questionIv"
-                    android:text="자주 묻는 질문"
+                    android:text="질문하기"
                     android:textSize="20dp" />
 
             </RelativeLayout>

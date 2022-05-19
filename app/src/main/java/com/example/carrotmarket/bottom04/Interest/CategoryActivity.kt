@@ -50,6 +50,8 @@ class CategoryActivity : AppCompatActivity() {
         checkPl()
         checkSp()
         checkSu()
+
+        back()
     }
 
     fun checkDi(){
@@ -135,7 +137,7 @@ class CategoryActivity : AppCompatActivity() {
     fun checkBuy(){
         checkBuy = getSharedPreferences("category", AppCompatActivity.MODE_PRIVATE).getString("checkBuy","").toBoolean()
 
-        if (checkDi == true)binding.ivBuy.setImageResource(R.drawable.ic_checked_circle)
+        if (checkBuy == true)binding.ivBuy.setImageResource(R.drawable.ic_checked_circle)
         else binding.ivBuy.setImageResource(R.drawable.ic_check_circle)
 
         binding.ivBuy.setOnClickListener {
@@ -387,8 +389,14 @@ class CategoryActivity : AppCompatActivity() {
                 checkSu = true
             }
 
-            getSharedPreferences("category", MODE_PRIVATE).edit().putString("checkDi", checkSu.toString()).apply()
+            getSharedPreferences("category", MODE_PRIVATE).edit().putString("checkSu", checkSu.toString()).apply()
 
+        }
+    }
+
+    fun back(){
+        binding.back.setOnClickListener {
+            onBackPressed()
         }
     }
 

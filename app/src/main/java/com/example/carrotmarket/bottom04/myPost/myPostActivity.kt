@@ -23,6 +23,7 @@ class myPostActivity : AppCompatActivity() {
 
         setObserver()
         myPostViewModel.getMyPostFromServer()
+        back()
     }
 
     fun setObserver(){
@@ -31,5 +32,11 @@ class myPostActivity : AppCompatActivity() {
 
             binding.postList.adapter = adapter
         })
+    }
+
+    fun back(){
+        binding.back.setOnClickListener {
+            onBackPressed()
+        }
     }
 }

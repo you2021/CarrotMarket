@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.carrotmarket.FCMViewModel
@@ -28,7 +29,7 @@ class LoginActivity : AppCompatActivity() {
 
     lateinit var binding : ActivityLoginBinding
     lateinit var loginViewModel: LoginViewModel
-    lateinit var joinViewModel: JoinViewModel
+    lateinit var kakaoViewModel: KakaoViewModel
 
     var id :String ? = null
     var name :String ? = null
@@ -37,8 +38,7 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivityLoginBinding.inflate(layoutInflater)
         loginViewModel = ViewModelProvider(this).get(LoginViewModel::class.java)
-        joinViewModel = ViewModelProvider(this).get(JoinViewModel::class.java)
-
+        kakaoViewModel = ViewModelProvider(this).get(KakaoViewModel::class.java)
         setContentView(binding.root)
 
         binding.joinBtn.setPaintFlags(binding.joinBtn.paintFlags or Paint.UNDERLINE_TEXT_FLAG)
@@ -59,23 +59,21 @@ class LoginActivity : AppCompatActivity() {
                 Toast.makeText(this, "아이디와 패스워드가 맞지 않습니다.", Toast.LENGTH_SHORT).show()
             }
         })
-        joinViewModel.result.observe(this, {  // 카카오 로그인
-            Log.d("loginCheck","${it.code}")
-            intentNext()
 
+        kakaoViewModel.result.observe(this, {
             if (it.status == "success") {
-//                getSharedPreferences("login", MODE_PRIVATE).edit().putString("id",it.id).apply()
-                Log.d("loginCheck","${it.cookie}")
-
+                intentNext()
+            }else{
+                Log.d("${it.status}", "${it.code}" )
             }
         })
-
-
     }
 
     fun idToServerBtn() {
         binding.btn.setOnClickListener {
             loginViewModel.idToServer(binding.idEdt.text.toString(), binding.pwEdt.text.toString())
+            getSharedPreferences("id", MODE_PRIVATE).edit().putString("myId",binding.idEdt.text.toString()).apply()
+
         }
     }
 
@@ -95,8 +93,11 @@ class LoginActivity : AppCompatActivity() {
                 val profile = user.kakaoAccount?.profile?.thumbnailImageUrl  // 프로필 이미지
                 name = user.kakaoAccount?.profile?.nickname!!
 
-//                fcm()
-//                joinViewModel.joinInfoToServer(id!!, "", name!!)
+                Toast.makeText(this, "$id , $name", Toast.LENGTH_SHORT).show()
+                kakaoViewModel.kakaoInfoToServer(id!!, "", name!!)
+                getSharedPreferences("login", MODE_PRIVATE).edit().putString("key",name).apply()
+
+
                 Log.i("loginCheck", "$id , $name, $profile")
             }
         }
@@ -118,8 +119,14 @@ class LoginActivity : AppCompatActivity() {
     }
 
     fun intentNext(){
-        val intent = Intent(this, MainActivity::class.java)
+        val intent = Intent(this, LocationActivity::class.java)
         startActivity(intent)
         finish()
+    }
+
+    override fun onBackPressed() {
+//        super.onBackPressed()
+        ActivityCompat.finishAffinity(this)
+        System.exit(0)
     }
 }

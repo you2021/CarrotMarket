@@ -36,7 +36,7 @@ class SplashActivity : AppCompatActivity() {
         }
 
         setObserber()
-        btn()
+        nextCheck()
     }
 
     fun setObserber(){  // 자동 로그인
@@ -56,9 +56,7 @@ class SplashActivity : AppCompatActivity() {
         })
     }
 
-    fun btn(){
-        binding.start.setOnClickListener {
-            loginCheckViewModel.loginCheckToServer(this)
-        }
+    fun nextCheck(){
+        loginCheckViewModel.loginCheckToServer(this)
     }
 }

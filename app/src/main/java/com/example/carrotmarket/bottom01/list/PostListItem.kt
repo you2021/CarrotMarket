@@ -9,4 +9,5 @@ data class PostListItem(
     val price : String,
     val tittle: String,
     val image : String,
+    val city : String,
 )

@@ -23,17 +23,16 @@ class PostListViewModel : ViewModel() {
         retrofit.postList().enqueue(object : Callback<ArrayList<PostListItem>> {
             override fun onResponse(call: Call<ArrayList<PostListItem>>, response: Response<ArrayList<PostListItem>>) {
 
-//                Log.d("resultValue", "list :  ${response.body()}  : ${response.errorBody()}")
                 if (response.isSuccessful){
                     _Result.value = response.body()
-                    Log.d("resultValue", "list :  ${response.body()!!.size}")
+                    Log.d("post", "list :  ${response.body()!!}")
                 }else {
-                    Log.d("success Fail : ", "list :  ${response.errorBody()}")
+                    Log.d("post Fail : ", "list :  ${response.errorBody()}")
                 }
             }
 
             override fun onFailure(call: Call<ArrayList<PostListItem>>, t: Throwable) {
-                Log.d("Fail : "," list : ${(t.message).toString()}")
+                Log.d("post Fail : "," Fail : ${(t.message).toString()}")
             }
         })
     }

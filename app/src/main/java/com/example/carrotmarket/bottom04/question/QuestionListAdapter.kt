@@ -25,8 +25,11 @@ class QuestionListAdapter(var items: ArrayList<QuestionItem>) :  RecyclerView.Ad
         fun bind(item : QuestionItem){
             binding.tittle.text = item.tittle
             binding.userId.text = item.user_id
-            binding.dateTime.text = item.dateTime
-    
+
+            val date = item.dateTime.replace("T"," ")
+            val time = date.slice(IntRange(0,18))
+            binding.dateTime.text = time
+
             itemView.setOnClickListener {
                 val pos:Int = getLayoutPosition()
                 val intent = Intent(binding.root.context, QuestionDetailActivity::class.java)

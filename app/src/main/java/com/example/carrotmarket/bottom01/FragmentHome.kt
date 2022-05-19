@@ -40,9 +40,11 @@ class FragmentHome : Fragment() {
 
     fun setObserver(){
         listListViewModel.Result.observe(viewLifecycleOwner, Observer {
+            if(it.size == 0) return@Observer
             adapter = PostListAdapter(it)
 
             binding.postList.adapter = adapter
+            binding.city.text = it.get(0).city  // 예외처리
         })
     }
 

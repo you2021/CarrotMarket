@@ -13,12 +13,20 @@
         app:layout_constraintTop_toTopOf="parent"
         android:padding="10dp">
 
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_back" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="공지사항"
             android:textSize="20dp"
-            android:textStyle="bold"/>
+            android:textStyle="bold"
+            android:layout_toRightOf="@id/back"
+            android:layout_marginRight="5dp"/>
 
         <TextView
             android:id="@+id/writeNotice"

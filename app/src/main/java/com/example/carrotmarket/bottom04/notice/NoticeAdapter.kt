@@ -23,8 +23,11 @@ class NoticeAdapter(var items: ArrayList<NoticeItem>) :  RecyclerView.Adapter<No
     class VH(private val binding: NoticeItemBinding):RecyclerView.ViewHolder(binding.root){
         fun bind(item : NoticeItem){
             binding.tittle.text = item.tittle
-            binding.dateTime.text = item.dateTime
-    
+
+            val date = item.dateTime.replace("T"," ")
+            val time = date.slice(IntRange(0,18))
+            binding.dateTime.text = time
+
             itemView.setOnClickListener {
                 val pos:Int = getLayoutPosition()
                 val intent = Intent(binding.root.context, NoticeDetailActivity::class.java)

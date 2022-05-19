@@ -3,11 +3,13 @@ package com.example.carrotmarket.bottom04.question
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
 import com.example.carrotmarket.bottom04.ManagerViewModel
 import com.example.carrotmarket.databinding.ActivityQuestionDetailBinding
+import java.lang.NullPointerException
 
 class QuestionDetailActivity : AppCompatActivity() {
 
@@ -44,7 +46,17 @@ class QuestionDetailActivity : AppCompatActivity() {
             binding.tittle.text = it.tittle
             binding.userId.text = it.user_id
             binding.content.text = it.content
-            binding.dateTime.text = it.dateTime
+
+            try{
+                val date = it.dateTime.replace("T"," ")
+                val time = date.slice(IntRange(0,18))
+                binding.dateTime.text = time
+            }catch (e : NullPointerException){
+                Log.d("ex", e.toString())
+            }
+
+
+
         })
     }
 

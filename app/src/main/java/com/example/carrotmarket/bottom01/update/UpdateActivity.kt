@@ -16,7 +16,7 @@ class UpdateActivity : AppCompatActivity() {
     lateinit var updateViewModel: UpdateViewModel
     lateinit var dialog: AlertDialog
 
-    var postId: String = ""
+    var postId = 0
     var category: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -38,7 +38,7 @@ class UpdateActivity : AppCompatActivity() {
         val comment = intent.getStringExtra("comment")
         val price = intent.getStringExtra("price")
         val category = intent.getStringExtra("category")
-        postId = intent.getStringExtra("postId")!!
+        postId = intent.getIntExtra("postId", 0)
 
         binding.etTittle.setText(tittle)
         binding.category.setText(category)

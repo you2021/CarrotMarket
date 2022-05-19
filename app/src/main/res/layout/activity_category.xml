@@ -15,12 +15,20 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent">
 
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_back" />
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="관심 카테고리 설정"
             android:textSize="20dp"
-            android:textStyle="bold" />
+            android:textStyle="bold"
+            android:layout_toRightOf="@id/back"
+            android:layout_marginRight="5dp"/>
 
     </RelativeLayout>
 
@@ -227,13 +235,16 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:src="@drawable/ic_checked_circle"/>
+
+
+
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="여성잡화"
-            android:layout_toRightOf="@id/ivStuff"
             android:layout_centerVertical="true"
-            android:layout_marginLeft="5dp"/>
+            android:layout_marginLeft="5dp"
+            android:layout_toRightOf="@id/ivStuff"
+            android:text="여성잡화" />
     </RelativeLayout>
 
     <RelativeLayout

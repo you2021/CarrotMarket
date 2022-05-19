@@ -29,7 +29,11 @@ class NoticeDetailActivity : AppCompatActivity() {
         noticeDetailModel.result.observe(this, {
             binding.tittle.text = it.tittle
             binding.content.text = it.content
-            binding.dateTime.text = it.dateTime
+
+            val date = it.dateTime.replace("T"," ")
+            val time = date.slice(IntRange(0,18))
+            binding.dateTime.text = time
+
         })
     }
 }

@@ -4,6 +4,7 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.widget.Toast
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.example.carrotmarket.bottom04.ManagerViewModel
@@ -29,6 +30,8 @@ class QuestionListActivity : AppCompatActivity() {
         questionBtn()
 
         managerViewModel.noticeFromServer()
+
+        back()
     }
 
     override fun onResume() {
@@ -57,6 +60,12 @@ class QuestionListActivity : AppCompatActivity() {
         binding.question.setOnClickListener {
             val intent = Intent(this, WriteQuestionActivity::class.java)
             startActivity(intent)
+        }
+    }
+
+    fun back(){
+        binding.back.setOnClickListener {
+            onBackPressed()
         }
     }
 }

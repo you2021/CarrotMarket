@@ -11,15 +11,16 @@
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"
-        android:background="#DCDADA">
+        android:layout_marginLeft="15dp"
+        android:background="#F6F6F6">
 
         <TextView
             android:id="@+id/typeTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:padding="10dp"
-            android:text="동네질문" />
+            android:padding="3dp"
+            android:text="동네질문"
+            android:textSize="13dp"/>
 
     </RelativeLayout>
 
@@ -30,7 +31,7 @@
         app:layout_constraintTop_toBottomOf="@id/type"
         app:layout_constraintLeft_toLeftOf="parent"
         android:layout_marginTop="10dp"
-        android:layout_marginLeft="10dp"
+        android:layout_marginLeft="15dp"
         android:text="질문이 있어요?"
         android:textSize="20dp"/>
 

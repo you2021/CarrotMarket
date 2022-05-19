@@ -31,7 +31,7 @@ class JoinActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setObserver()
-        location()
+//        location()
         joinBtn()
 
     }
@@ -57,8 +57,6 @@ class JoinActivity : AppCompatActivity() {
         val mapPoint = MapPoint.mapPointWithGeoCoord(lat!!, lon!!)
         mapView.setMapCenterPointAndZoomLevel(mapPoint, 3, true);
 
-        binding.mapView.addView(mapView)
-
         val geocoder = Geocoder(this, Locale.getDefault())
         val addresses: List<Address>? = geocoder.getFromLocation(lat, lon, 1)
         try {
@@ -67,8 +65,6 @@ class JoinActivity : AppCompatActivity() {
 
                 if(returnedAddress.adminArea == null) city = returnedAddress.locality
                 else city = returnedAddress.adminArea
-
-                binding.cityTxt.text = city
 
                 Log.d("로그", city)
             } else {
@@ -110,7 +106,7 @@ class JoinActivity : AppCompatActivity() {
     fun joinBtn(){
         if(binding.userId.text != null){
             binding.joinBtn.setOnClickListener {
-                joinViewModel.joinInfoToServer(binding.userId.text.toString(),binding.userPw.text.toString(),binding.userName.text.toString(),city)
+                joinViewModel.joinInfoToServer(binding.userId.text.toString(),binding.userPw.text.toString(),binding.userName.text.toString(),)
             }
         }
     }

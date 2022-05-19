@@ -4,7 +4,7 @@ package com.example.carrotmarket
 import com.example.carrotmarket.bottom01.comment.CommentListItem
 import com.example.carrotmarket.bottom01.list.PostListItem
 import com.example.carrotmarket.bottom02.townList.TownItem
-import com.example.carrotmarket.bottom03.ChattingItem
+import com.example.carrotmarket.bottom03.chatting.ChattingItem
 import com.example.carrotmarket.bottom03.chattingroom.ChattingRoomItem
 import com.example.carrotmarket.bottom04.notice.ManagerItem
 import com.example.carrotmarket.bottom04.notice.NoticeItem
@@ -43,7 +43,7 @@ interface RetrofitService {
 
     @FormUrlEncoded
     @POST("/writeComment")
-    fun comment(@Field("postId") postId:String, @Field("comment") comment:String):Call<ResultItem>
+    fun comment(@Field("postId") postId:Int, @Field("comment") comment:String):Call<ResultItem>
 
     @FormUrlEncoded
     @POST("/commentList")
@@ -59,7 +59,20 @@ interface RetrofitService {
 
     @FormUrlEncoded
     @POST("/join")
-    fun join(@Field("ui_id") ui_id:String,@Field("ui_pw") ui_pw:String,@Field("ui_name") ui_name:String, @Field("city") city:String):Call<ResultItem>
+    fun join(@Field("ui_id") ui_id:String,@Field("ui_pw") ui_pw:String,@Field("ui_name") ui_name:String,):Call<ResultItem>
+
+    @FormUrlEncoded
+    @POST("/join/city")
+    fun city(@Field("city") city:String,):Call<ResultItem>
+
+    @FormUrlEncoded
+    @POST("/kakaoLogin")
+    fun kakao(@Field("ui_id") ui_id:String,@Field("ui_pw") ui_pw:String,@Field("ui_name") ui_name:String,):Call<ResultItem>
+
+    @FormUrlEncoded
+    @POST("/kakaoLogin/check")
+    fun kakaoCheck(@Field("ui_id") ui_id:String,):Call<ResultItem>
+
 
     @GET("/logout")
     fun logout():Call<ResultItem>
@@ -70,6 +83,10 @@ interface RetrofitService {
 
     @GET("/myPost")
     fun myPost(): Call<ArrayList<PostListItem>>
+
+    @FormUrlEncoded
+    @POST("/myPost/detail")
+    fun myDetail(@Field("num") num:Int):Call<PostListItem>
 
     @GET("/notice")
     fun notice(): Call<ArrayList<NoticeItem>>
@@ -109,15 +126,15 @@ interface RetrofitService {
 
     @FormUrlEncoded
     @POST("/socket")
-    fun socketInit(@Field("your_id") your_id:String, @Field("roomKey") roomKey:String, ):Call<ResultItem>
+    fun socketInit(@Field("your_id") your_id:String, @Field("roomKey") roomKey:Int, ):Call<ResultItem>
 
     @FormUrlEncoded
     @POST("/socket/user")
-    fun socketUser(@Field("roomKey") roomKey:String, @Field("content") content:String):Call<ResultItem>
+    fun socketUser(@Field("roomKey") roomKey:Int, @Field("content") content:String):Call<ResultItem>
 
     @FormUrlEncoded
     @POST("/chattingList")
-    fun chattingList(@Field("roomKey") roomKey:String):Call<ArrayList<ChattingItem>>
+    fun chattingList(@Field("roomKey") roomKey:Int):Call<ArrayList<ChattingItem>>
 
     @FormUrlEncoded
     @POST("/save")
@@ -137,4 +154,23 @@ interface RetrofitService {
     @FormUrlEncoded
     @POST("/change/updateCity")
     fun updateCity(@Field("city") city:String):Call<ResultItem>
+
+    @FormUrlEncoded
+    @POST("/favorite")
+    fun favorite(@Field("postId") postId:Int, @Field("check") check:String):Call<ResultItem>
+
+    @FormUrlEncoded
+    @POST("/favorite/check")
+    fun favorite_check(@Field("postId") postId:Int,):Call<ResultItem>
+
+    @FormUrlEncoded
+    @POST("/favorite/delete")
+    fun favorite_delete(@Field("postId") postId:Int,):Call<ResultItem>
+
+    @GET("/interestFavorite")
+    fun interestFavorite(): Call<ArrayList<PostListItem>>
+
+    @FormUrlEncoded
+    @POST("/fcm")
+    fun fcm(@Field("id") id:String,):Call<ResultItem>
 }

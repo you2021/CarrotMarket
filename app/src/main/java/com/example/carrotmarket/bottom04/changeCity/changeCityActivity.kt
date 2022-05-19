@@ -31,6 +31,7 @@ class changeCityActivity : AppCompatActivity() {
         setObserver()
         location()
         btn()
+        back()
 
     }
 
@@ -99,6 +100,12 @@ class changeCityActivity : AppCompatActivity() {
     fun btn(){
         binding.changeBtn.setOnClickListener {
             cityViewModel.cityToServer(city)
+        }
+    }
+
+    fun back(){
+        binding.back.setOnClickListener {
+            onBackPressed()
         }
     }
 

@@ -59,4 +59,10 @@ class NoticeActivity : AppCompatActivity() {
             startActivity(intent)
         }
     }
+
+    fun back(){
+        binding.back.setOnClickListener {
+            onBackPressed()
+        }
+    }
 }

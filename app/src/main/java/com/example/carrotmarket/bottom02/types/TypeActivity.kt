@@ -24,6 +24,7 @@ class TypeActivity : AppCompatActivity() {
 
         setListObserver()
         list()
+        back()
     }
 
     fun setListObserver(){
@@ -36,5 +37,11 @@ class TypeActivity : AppCompatActivity() {
 
     fun list(){
         typeListViewModel.listFromServer(type)
+    }
+
+    fun back(){
+        binding.back.setOnClickListener {
+            onBackPressed()
+        }
     }
 }

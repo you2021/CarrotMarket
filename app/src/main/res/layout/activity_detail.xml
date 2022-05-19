@@ -10,7 +10,8 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toTopOf="@id/priceLayout"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginBottom="10dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -126,6 +127,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
+                android:layout_marginLeft="30dp"
+                android:layout_marginRight="30dp"
                 android:orientation="vertical"
                 app:layoutManager="androidx.recyclerview.widget.GridLayoutManager"
                 app:layout_constraintTop_toBottomOf="@+id/commentTxt" />
@@ -133,6 +136,12 @@
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#EFEFEF"
+        app:layout_constraintTop_toTopOf="@id/priceLayout"/>
 
     <RelativeLayout
         android:id="@+id/priceLayout"
@@ -142,34 +151,59 @@
         app:layout_constraintBottom_toTopOf="@id/editLayout"
         app:layout_constraintLeft_toLeftOf="parent">
 
+        <ImageView
+            android:id="@+id/favorite"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/ic_favorite"
+            android:layout_centerVertical="true"
+            android:layout_marginLeft="5dp"/>
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="40dp"
+            android:layout_toRightOf="@id/favorite"
+            android:layout_marginLeft="5dp"
+            android:background="#EFEFEF"
+            android:layout_centerVertical="true"/>
+
         <TextView
             android:id="@+id/priceTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginLeft="20dp"
+            android:layout_marginLeft="15dp"
+            android:layout_toRightOf="@id/favorite"
+            android:layout_centerVertical="true"
             android:text="price"
-            android:textSize="30dp"/>
+            android:textSize="20dp"/>
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/chattingBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
             android:layout_marginRight="10dp"
-            android:text="채팅하기"/>
+            android:background="@drawable/bg_btn_chat"
+            android:text="채팅하기"
+            android:textColor="@color/white"/>
 
     </RelativeLayout>
 
 
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="#EFEFEF"
+        app:layout_constraintTop_toTopOf="@id/editLayout"/>
 
     <LinearLayout
         android:id="@+id/editLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:layout_marginBottom="10dp"
         android:orientation="horizontal"
         app:layout_constraintBottom_toBottomOf="parent">
-
 
         <EditText
             android:id="@+id/commentEdt"
@@ -179,12 +213,13 @@
             android:layout_weight="1"
             android:hint="댓글입력해주세요" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btn"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_height="30dp"
             android:layout_marginLeft="10dp"
             android:layout_marginRight="10dp"
+            android:background="@drawable/bg_btn"
             android:text="확인" />
 
     </LinearLayout>

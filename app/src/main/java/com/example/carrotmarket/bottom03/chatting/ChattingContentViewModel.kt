@@ -1,25 +1,17 @@
-package com.example.carrotmarket.bottom03
+package com.example.carrotmarket.bottom03.chatting
 
-import android.os.Handler
-import android.os.Looper
 import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.carrotmarket.ResultItem
-import com.example.carrotmarket.bottom01.list.PostListItem
 import com.example.carrotmarket.RetrofitHelper
 import com.example.carrotmarket.RetrofitService
-import io.socket.client.IO
-import io.socket.emitter.Emitter
-import org.json.JSONObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import java.util.ArrayList
 
-class ChattingInitViewModel : ViewModel() {
+class ChattingContentViewModel : ViewModel() {
 
     val retrofit: RetrofitService = RetrofitHelper.getRetrofitInstanceGson()
         .create(RetrofitService::class.java)
@@ -29,8 +21,8 @@ class ChattingInitViewModel : ViewModel() {
         get() = _result
 
 
-    fun chattingInitToServer(your_id :String, roomKey :String){
-        retrofit.socketInit(your_id, roomKey).enqueue(object : Callback<ResultItem> {
+    fun chattingContentToServer(roomKey :Int, text:String){
+        retrofit.socketUser(roomKey, text).enqueue(object : Callback<ResultItem> {
             override fun onResponse(call: Call<ResultItem>, response: Response<ResultItem>) {
 
                 if (response.isSuccessful){

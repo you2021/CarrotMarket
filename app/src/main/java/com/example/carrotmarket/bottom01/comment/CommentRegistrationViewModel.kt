@@ -20,7 +20,7 @@ class CommentRegistrationViewModel : ViewModel() {
     val idResult : LiveData<ResultItem>
         get() = _idResult
 
-    fun commentToServer(postId:String, comment:String){
+    fun commentToServer(postId:Int, comment:String){
         retrofit.comment(postId, comment).enqueue(object : Callback<ResultItem> {
             override fun onResponse(call: Call<ResultItem>, response: Response<ResultItem>) {
 

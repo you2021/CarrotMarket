@@ -1,5 +1,6 @@
-package com.example.carrotmarket.bottom03
+package com.example.carrotmarket.bottom03.chatting
 
+import android.icu.text.SimpleDateFormat
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
@@ -7,11 +8,17 @@ import android.os.Looper
 import android.util.Log
 import android.widget.Toast
 import androidx.lifecycle.ViewModelProvider
-import androidx.recyclerview.widget.RecyclerView
+import com.example.carrotmarket.bottom03.FcmViewModel
 import com.example.carrotmarket.databinding.ActivityChattingBinding
 import io.socket.client.IO
 import io.socket.emitter.Emitter
 import org.json.JSONObject
+import java.lang.Exception
+import java.time.LocalDate
+import java.time.LocalDateTime
+import java.time.format.DateTimeFormatter
+import java.util.*
+import kotlin.collections.ArrayList
 
 class ChattingActivity : AppCompatActivity() {
 
@@ -19,15 +26,17 @@ class ChattingActivity : AppCompatActivity() {
     lateinit var chattingViewModel: ChattingViewModel
     lateinit var chattingInitViewModel: ChattingInitViewModel
     lateinit var chattingContentViewModel: ChattingContentViewModel
+    private lateinit var fcmViewModel: FcmViewModel
 
-    var adapter:ChattingAdapter ?= null
+    var adapter: ChattingAdapter?= null
     val items = ArrayList<ChattingItem>()
     var yourId = ""
-    var roomKey = ""
+    var roomKey = 0
     var saveId = ""
     var check = false
+    var checkNm = 0
 
-    val socket = IO.socket("http://192.168.200.115:4000")
+    val socket = IO.socket("http://192.168.200.115:80")
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,12 +44,19 @@ class ChattingActivity : AppCompatActivity() {
         chattingViewModel = ViewModelProvider(this).get(ChattingViewModel::class.java)
         chattingInitViewModel = ViewModelProvider(this).get(ChattingInitViewModel::class.java)
         chattingContentViewModel = ViewModelProvider(this).get(ChattingContentViewModel::class.java)
+        fcmViewModel= ViewModelProvider(this).get(FcmViewModel::class.java)
         setContentView(binding.root)
 
-        yourId = intent.getStringExtra("userId").toString()
-        roomKey = intent.getStringExtra("roomKey")!!
-        Log.d("roomKey","activity : ${roomKey}")
+        saveId = getSharedPreferences("id", AppCompatActivity.MODE_PRIVATE).getString("myId","")!!
 
+        try{
+            yourId = intent.getStringExtra("userId")!!
+            roomKey = intent.getIntExtra("roomKey", 0)!!
+            Log.d("roomKey","activity : ${roomKey}")
+
+        }catch(e : Exception){
+            Log.d("exception", e.toString())
+        }
 
 
         adapter = ChattingAdapter(this, items)
@@ -63,7 +79,9 @@ class ChattingActivity : AppCompatActivity() {
             Handler(Looper.getMainLooper()).post {
                 Log.d("chattingList", id)
                 if (id == saveId) return@post
-                items.add(ChattingItem(msg, id, "ooo"))
+                val currentTime = LocalDateTime.now()
+                val formatter = DateTimeFormatter.ofPattern("HH:mm")
+                items.add(ChattingItem(msg, id, currentTime.format(formatter)))
                 adapter!!.notifyDataSetChanged()
                 binding.chattingContent.scrollToPosition(items.size - 1)
             }
@@ -74,16 +92,19 @@ class ChattingActivity : AppCompatActivity() {
         chattingList()
         chattingSet()
         sendBtn()
+        back()
 
     }
-
     fun setObserver(){
         chattingViewModel.result.observe(this, {   // 톡 내용 불러오기
             if(check == true) return@observe
             for(i in 0..it.size-1){
-                items.add(ChattingItem(it[i].comment,it[i].id, "ooo"))
+                val time = it[i].dateTime.slice(IntRange(11,15))
+                Log.d("dateTime", "${it[i].dateTime} : ${time}" )
+                items.add(ChattingItem(it[i].comment,it[i].id, time))
                 adapter!!.notifyDataSetChanged()
             }
+            checkNm = it.size
             check = true
         })
 
@@ -95,6 +116,7 @@ class ChattingActivity : AppCompatActivity() {
             val text = binding.contentEt.text.toString()
             binding.contentEt.setText("")
             if(it.status == "success") socket.emit("chatting", text )
+            fcmViewModel.fcmFromServer(yourId)
         })
     }
 
@@ -106,11 +128,14 @@ class ChattingActivity : AppCompatActivity() {
         binding.send.setOnClickListener {
             val text = binding.contentEt.text.toString()
 
-            if(yourId != "") chattingInitViewModel.chattingInitToServer(yourId, roomKey)
+            if(checkNm == 0)chattingInitViewModel.chattingInitToServer(yourId, roomKey)
 
             chattingContentViewModel.chattingContentToServer(roomKey, text)
 
-            items.add(ChattingItem(text, saveId, "ooo"))
+            val currentTime = LocalDateTime.now()
+            val formatter = DateTimeFormatter.ofPattern("HH:mm")
+
+            items.add(ChattingItem(text, saveId, currentTime.format(formatter)))
             adapter!!.notifyDataSetChanged()
             binding.chattingContent.scrollToPosition(items.size - 1)
         }
@@ -118,5 +143,11 @@ class ChattingActivity : AppCompatActivity() {
 
     fun chattingList(){
         chattingViewModel.chattingFromServer(roomKey)
+    }
+
+    fun back(){
+        binding.back.setOnClickListener {
+            onBackPressed()
+        }
     }
 }

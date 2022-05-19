@@ -25,14 +25,11 @@ class TownListAdapter(var items: ArrayList<TownItem>) :  RecyclerView.Adapter<To
         fun bind(item : TownItem){
             binding.typeTxt.text = item.type
             binding.contents.text = item.contents
-            binding.time.text = item.time
-    
-//            itemView.setOnClickListener {
-//                val pos:Int = getLayoutPosition()
-//                val intent = Intent(binding.root.context, DetailActivity::class.java)
-//                intent.putExtra("num", pos)
-//                binding.root.context.startActivity(intent)
-//            }
+
+            val date = item.time.replace("T"," ")
+            val time = date.slice(IntRange(0,18))
+            binding.time.text = time
+
         }
 
     }

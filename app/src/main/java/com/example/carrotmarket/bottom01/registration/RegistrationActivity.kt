@@ -127,7 +127,7 @@ class registrationActivity : AppCompatActivity() {
 
         imageViewModel.result.observe(this, {
             imageArr = it
-            Log.d("imageArr", "${imageArr}")
+            Log.d("imageChange", "${imageArr}")
         })
     }
 

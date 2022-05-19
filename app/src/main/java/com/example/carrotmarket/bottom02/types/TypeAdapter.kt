@@ -26,7 +26,10 @@ class TypeAdapter(var items: ArrayList<TownItem>) :  RecyclerView.Adapter<TypeAd
         fun bind(item : TownItem){
             binding.typeTxt.text = item.type
             binding.contents.text = item.contents
-            binding.time.text = item.time
+
+            val date = item.time.replace("T"," ")
+            val time = date.slice(IntRange(0,18))
+            binding.time.text = time
 
         }
 

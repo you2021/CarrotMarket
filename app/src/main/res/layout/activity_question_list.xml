@@ -10,20 +10,34 @@
         android:id="@+id/questionLayout"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        android:padding="10dp">
+
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/ic_back"
+            android:layout_marginRight="5dp"
+            android:layout_centerVertical="true"/>
 
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="자주 질문"
-            android:padding="10dp"/>
+            android:layout_marginRight="5dp"
+            android:layout_toRightOf="@id/back"
+            android:layout_centerVertical="true"
+            android:text="질문"
+            android:textSize="20dp"
+            android:textStyle="bold"/>
 
         <TextView
             android:id="@+id/question"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="질문하기"
-            android:padding="10dp"
+            android:layout_centerVertical="true"
+            android:textSize="15dp"
             android:layout_alignParentRight="true"
             android:visibility="visible"/>
     </RelativeLayout>

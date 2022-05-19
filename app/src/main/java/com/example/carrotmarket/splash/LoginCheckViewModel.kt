@@ -1,6 +1,7 @@
 package com.example.carrotmarket.splash
 
 import android.content.Context
+import android.content.Context.MODE_PRIVATE
 import android.util.Log
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.LiveData
@@ -24,8 +25,12 @@ class LoginCheckViewModel : ViewModel() {
 
     fun loginCheckToServer(context:Context){
 
+//        context.getSharedPreferences("login", MODE_PRIVATE).edit().clear().apply()
         val pref = context.getSharedPreferences("login", AppCompatActivity.MODE_PRIVATE)
         val saveId = pref!!.getString("key","")!!
+
+
+        Log.d("token", saveId)
 
         retrofit.loginCheck(saveId).enqueue(object :
             Callback<ResultItem> {

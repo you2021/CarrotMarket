@@ -19,11 +19,13 @@ class FragmentChatting : Fragment() {
     lateinit var binding:FragmentChattingBinding
     private lateinit var chattingRoomViewModel: ChattingRoomViewModel
 
+
     var adapter: ChattingRoomAdapter? = null
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?, ): View? {
         binding = FragmentChattingBinding.inflate(inflater, container, false)
         chattingRoomViewModel= ViewModelProvider(requireActivity()).get(ChattingRoomViewModel::class.java)
+
         return binding.root
 
     }
